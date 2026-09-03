@@ -1,0 +1,206 @@
+{
+  "package.json": {
+    "mtime": 1788442080.9008286,
+    "seen": 1788442291.929701,
+    "ast_hash": "1b5a8c8319c61dccb20a81df32fca30c",
+    "semantic_hash": "1b5a8c8319c61dccb20a81df32fca30c"
+  },
+  "shared/package.json": {
+    "mtime": 1788442031.333853,
+    "seen": 1788442291.929701,
+    "ast_hash": "27be1257bc001fa3d34536e1db8c15ef",
+    "semantic_hash": "27be1257bc001fa3d34536e1db8c15ef"
+  },
+  "shared/src/crypto/ledger.ts": {
+    "mtime": 1788437824.9133227,
+    "seen": 1788442291.929701,
+    "ast_hash": "60a923aa16d028106271661c6b465cf8",
+    "semantic_hash": "60a923aa16d028106271661c6b465cf8"
+  },
+  "shared/src/index.ts": {
+    "mtime": 1788437844.7674482,
+    "seen": 1788442291.929701,
+    "ast_hash": "c36acffd56c211eac841e51fd169f502",
+    "semantic_hash": "c36acffd56c211eac841e51fd169f502"
+  },
+  "shared/src/pii/classifiers.ts": {
+    "mtime": 1788437842.3643897,
+    "seen": 1788442291.929701,
+    "ast_hash": "fcb642fa580903be93a362a85ed9fafc",
+    "semantic_hash": "fcb642fa580903be93a362a85ed9fafc"
+  },
+  "shared/src/pii/luhn.ts": {
+    "mtime": 1788442061.2090745,
+    "seen": 1788442291.929701,
+    "ast_hash": "45dd4ba228577c47b164122beff370ad",
+    "semantic_hash": "45dd4ba228577c47b164122beff370ad"
+  },
+  "shared/src/pii/verhoeff.ts": {
+    "mtime": 1788437830.451769,
+    "seen": 1788442291.929701,
+    "ast_hash": "34352277701729125ed26cbfc390c90c",
+    "semantic_hash": "34352277701729125ed26cbfc390c90c"
+  },
+  "shared/src/test.ts": {
+    "mtime": 1788442064.2741182,
+    "seen": 1788442291.929701,
+    "ast_hash": "80c27956b8ef9789445628e4cab6f2c8",
+    "semantic_hash": "80c27956b8ef9789445628e4cab6f2c8"
+  },
+  "shared/src/types.ts": {
+    "mtime": 1788437818.6807141,
+    "seen": 1788442291.929701,
+    "ast_hash": "df39397c6a2960820177e22267b6c24e",
+    "semantic_hash": "df39397c6a2960820177e22267b6c24e"
+  },
+  "shared/tsconfig.json": {
+    "mtime": 1788437813.1966827,
+    "seen": 1788442291.929701,
+    "ast_hash": "a203b19e96da6e7d0ed6ec9926b6ec5a",
+    "semantic_hash": "a203b19e96da6e7d0ed6ec9926b6ec5a"
+  },
+  "context.md": {
+    "mtime": 1788437742.4629204,
+    "seen": 1788442291.929701,
+    "ast_hash": "1bab59f3b590f75c4ff3eeeb2dcb47c9",
+    "semantic_hash": "1bab59f3b590f75c4ff3eeeb2dcb47c9"
+  },
+  "decisions.md": {
+    "mtime": 1788437760.779526,
+    "seen": 1788442291.929701,
+    "ast_hash": "5b56c1a5228358776a120dbe7591af5e",
+    "semantic_hash": "5b56c1a5228358776a120dbe7591af5e"
+  },
+  "design.md": {
+    "mtime": 1788437752.810512,
+    "seen": 1788442291.929701,
+    "ast_hash": "ddead66132e894248075978d97f21fdb",
+    "semantic_hash": "ddead66132e894248075978d97f21fdb"
+  },
+  "docs/COMPREHENSIVE_ARCHITECTURE_CONTEXT.md": {
+    "mtime": 1788434129.5744216,
+    "seen": 1788442291.929701,
+    "ast_hash": "f6cd5d158e33cd80609239c3f7dc9769",
+    "semantic_hash": "f6cd5d158e33cd80609239c3f7dc9769"
+  },
+  "docs/THIRD_PARTY_SCAN.md": {
+    "mtime": 1788254281.8451838,
+    "seen": 1788442291.929701,
+    "ast_hash": "e61a37e0d1f29b27d3f0763734e78d7d",
+    "semantic_hash": "e61a37e0d1f29b27d3f0763734e78d7d"
+  },
+  "docs/handoffs/ai-evidence-classification.md": {
+    "mtime": 1788254281.8461838,
+    "seen": 1788442291.929701,
+    "ast_hash": "215103a972f1550b40a170464b559a2e",
+    "semantic_hash": "215103a972f1550b40a170464b559a2e"
+  },
+  "docs/vapt/01-architecture.md": {
+    "mtime": 1788254281.8471823,
+    "seen": 1788442291.929701,
+    "ast_hash": "cc945470d0f7879be40bc48a800cb021",
+    "semantic_hash": "cc945470d0f7879be40bc48a800cb021"
+  },
+  "docs/vapt/02-data-contract.md": {
+    "mtime": 1788254281.8471823,
+    "seen": 1788442291.929701,
+    "ast_hash": "3120fdd3c26d8c9513dc4854725ca7ba",
+    "semantic_hash": "3120fdd3c26d8c9513dc4854725ca7ba"
+  },
+  "docs/vapt/03-finding-evidence-model.md": {
+    "mtime": 1788254281.8486893,
+    "seen": 1788442291.929701,
+    "ast_hash": "3221ef62c81f9f4eb9b71be4cf811791",
+    "semantic_hash": "3221ef62c81f9f4eb9b71be4cf811791"
+  },
+  "docs/vapt/04-cli-command-proposal.md": {
+    "mtime": 1788254281.8496985,
+    "seen": 1788442291.929701,
+    "ast_hash": "ef279354db77128cbee4097e902b6114",
+    "semantic_hash": "ef279354db77128cbee4097e902b6114"
+  },
+  "docs/vapt/05-storage-mapping.md": {
+    "mtime": 1788254281.8496985,
+    "seen": 1788442291.929701,
+    "ast_hash": "cbe7659428382bf23904cc161fd02389",
+    "semantic_hash": "cbe7659428382bf23904cc161fd02389"
+  },
+  "docs/vapt/06-backend-requirements.md": {
+    "mtime": 1788254281.8506966,
+    "seen": 1788442291.929701,
+    "ast_hash": "a299560be6dfb5a04651b1c5908623b2",
+    "semantic_hash": "a299560be6dfb5a04651b1c5908623b2"
+  },
+  "docs/vapt/07-example-lifecycle.md": {
+    "mtime": 1788254281.8506966,
+    "seen": 1788442291.929701,
+    "ast_hash": "85128b999cacac559be40aea754b042a",
+    "semantic_hash": "85128b999cacac559be40aea754b042a"
+  },
+  "docs/vapt/08-open-decisions.md": {
+    "mtime": 1788254281.8516955,
+    "seen": 1788442291.929701,
+    "ast_hash": "e66370cc768543d40de5033098620188",
+    "semantic_hash": "e66370cc768543d40de5033098620188"
+  },
+  "docs/vapt/README.md": {
+    "mtime": 1788254281.8516955,
+    "seen": 1788442291.929701,
+    "ast_hash": "795efd2bc344cd7e2a57fabf003870e5",
+    "semantic_hash": "795efd2bc344cd7e2a57fabf003870e5"
+  },
+  "sequence-diagram/DSR_erasure.png": {
+    "mtime": 1788294619.3422651,
+    "seen": 1788442291.929701,
+    "ast_hash": "28e1fc9dfbb8b5902996f09937d4cfc8",
+    "semantic_hash": "28e1fc9dfbb8b5902996f09937d4cfc8"
+  },
+  "sequence-diagram/MainWorkflow.png": {
+    "mtime": 1788294443.464928,
+    "seen": 1788442291.929701,
+    "ast_hash": "12dda5af6ab0c7b4181ef469158a72e8",
+    "semantic_hash": "12dda5af6ab0c7b4181ef469158a72e8"
+  },
+  "sequence-diagram/Sequence DiagramControl_and_client_onboarding.png": {
+    "mtime": 1788294149.6315956,
+    "seen": 1788442291.929701,
+    "ast_hash": "46c7ad08899528674bbf5df3286c211f",
+    "semantic_hash": "46c7ad08899528674bbf5df3286c211f"
+  },
+  "sequence-diagram/class-diagram-agent.png": {
+    "mtime": 1788296157.980554,
+    "seen": 1788442291.929701,
+    "ast_hash": "a9416915466f7e2d8cbbf89fdef8fc88",
+    "semantic_hash": "a9416915466f7e2d8cbbf89fdef8fc88"
+  },
+  "sequence-diagram/class-diagram-control-plane.png": {
+    "mtime": 1788296412.2644694,
+    "seen": 1788442291.929701,
+    "ast_hash": "6e457a5f17ef7a099289a0b9943b9498",
+    "semantic_hash": "6e457a5f17ef7a099289a0b9943b9498"
+  },
+  "sequence-diagram/continuous health check.png": {
+    "mtime": 1788294310.6529286,
+    "seen": 1788442291.929701,
+    "ast_hash": "ead71d063b1d9084448cc88804679b92",
+    "semantic_hash": "ead71d063b1d9084448cc88804679b92"
+  },
+  "sequence-diagram/multi-tenant-Saas.png": {
+    "mtime": 1788419502.9084532,
+    "seen": 1788442291.929701,
+    "ast_hash": "f829f3c647a074a83d0d1c32a2ff1f43",
+    "semantic_hash": "f829f3c647a074a83d0d1c32a2ff1f43"
+  },
+  "sequence-diagram/realTime_consentEnforcement.png": {
+    "mtime": 1788294694.3975384,
+    "seen": 1788442291.929701,
+    "ast_hash": "449fe35a41637188da99461459c1b1a0",
+    "semantic_hash": "449fe35a41637188da99461459c1b1a0"
+  },
+  "sequence-diagram/sequence-diagram.png": {
+    "mtime": 1788262722.608298,
+    "seen": 1788442291.929701,
+    "ast_hash": "cd5033c07b7a8bf94b81343865a138ca",
+    "semantic_hash": "cd5033c07b7a8bf94b81343865a138ca"
+  }
+}

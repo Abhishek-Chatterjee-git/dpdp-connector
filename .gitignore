@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+package-lock.json.bak
+
+# Compilation output
+dist/
+build/
+*.tsbuildinfo
+
+# SQLite databases & Local runtime data
+data/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE Files
+.vscode/
+.idea/
+
+# Graphify & Cache sidecars (keep html, report, json)
+graphify-out/.graphify_*
+graphify-out/cost.json

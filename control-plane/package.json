@@ -1,0 +1,21 @@
+{
+  "name": "@dpdp/control-plane",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DPDP Act Compliance Central Control Plane & DPO Dashboard",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node --experimental-sqlite --import tsx src/index.ts",
+    "test": "node --experimental-sqlite --import tsx src/test.ts"
+  },
+  "dependencies": {
+    "@dpdp/shared": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  }
+}

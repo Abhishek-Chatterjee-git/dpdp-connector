@@ -1,0 +1,52 @@
+services:
+  # Central Control Plane & DPO Dashboard
+  control-plane:
+    build:
+      context: .
+      dockerfile: control-plane/Dockerfile
+    container_name: dpdp-control-plane
+    ports:
+      - "4000:4000"
+    environment:
+      - CONTROL_PLANE_PORT=4000
+      - NODE_ENV=production
+    volumes:
+      - ./data/control_plane:/app/data
+
+  # Zone Agent (In-VPC Sidecar / Daemon)
+  zone-agent:
+    build:
+      context: .
+      dockerfile: agent/Dockerfile
+    container_name: dpdp-zone-agent
+    ports:
+      - "5000:5000"
+    environment:
+      - AGENT_ID=agent-vpc-mumbai-01
+      - AGENT_NAME=AWS-Mumbai-Zone-Agent
+      - AGENT_PORT=5000
+      - CONTROL_PLANE_URL=http://control-plane:4000
+      - DB_TYPE=SQLITE
+      - DB_CONNECTION_STRING=/app/data/enterprise.sqlite
+    volumes:
+      - ./data/enterprise:/app/data
+    depends_on:
+      - control-plane
+
+  # Demo E-Commerce Enterprise App
+  ecom-app:
+    build:
+      context: .
+      dockerfile: sim-enterprise/ecom-app/Dockerfile
+    container_name: dpdp-ecom-app
+    ports:
+      - "3000:3000"
+    environment:
+      - ECOM_PORT=3000
+      - AGENT_URL=http://zone-agent:5000
+      - CONTROL_PLANE_URL=http://control-plane:4000
+    volumes:
+      - ./data/enterprise:/app/data
+    depends_on:
+      - zone-agent
+      - control-plane

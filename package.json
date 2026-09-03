@@ -1,0 +1,25 @@
+{
+  "name": "dpdp-compliance-platform",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "agent",
+    "control-plane",
+    "sim-enterprise/ecom-app"
+  ],
+  "scripts": {
+    "test:shared": "npm --workspace=shared run test",
+    "build:shared": "npm --workspace=shared run build",
+    "test:agent": "npm --workspace=agent run test",
+    "test:cp": "npm --workspace=control-plane run test",
+    "test:ecom": "npm --workspace=sim-enterprise/ecom-app run test",
+    "test:e2e": "npx tsx scripts/demo-e2e.ts",
+    "demo": "npx tsx scripts/demo-e2e.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.1"
+  }
+}

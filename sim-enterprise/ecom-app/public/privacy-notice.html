@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statutory Privacy Notice & Consent Policy — Artisan Crafts (DPDP Act 2025)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvasNight: '#000000',
+            canvasCream: '#fbfbf5',
+            aloe: '#c1fbd4',
+            pistachio: '#d4f9e0',
+            hairlineLight: '#e4e4e7',
+            shade30: '#d4d4d8',
+            shade50: '#71717a',
+            ink: '#000000',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            display: ['Inter Display', 'Helvetica', 'Arial', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-feature-settings: "ss03" 1; }
+  </style>
+</head>
+<body class="min-h-screen bg-canvasCream text-ink font-sans flex flex-col selection:bg-aloe selection:text-black">
+
+  <!-- Top Dark Nav Bar -->
+  <header class="bg-canvasNight text-white px-6 lg:px-12 h-16 flex items-center justify-between sticky top-0 z-40">
+    <div class="flex items-center space-x-4">
+      <a href="/" class="w-7 h-7 rounded-full bg-white flex items-center justify-center font-bold text-xs text-black tracking-tighter">
+        AC
+      </a>
+      <a href="/" class="font-light text-lg tracking-wide uppercase font-display text-white">Artisan Crafts</a>
+      <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-aloe text-black font-semibold uppercase tracking-wider hidden sm:inline">Statutory DPDP Notice</span>
+    </div>
+
+    <nav class="flex items-center space-x-6 text-sm text-shade30 font-light">
+      <a href="/" class="hover:text-white transition-colors">← Back to Store</a>
+      <a href="/privacy-center" class="text-aloe hover:underline">Self-Service Privacy Portal</a>
+      <a href="http://localhost:4000" target="_blank" class="hover:text-white transition-colors">DPO Dashboard</a>
+    </nav>
+  </header>
+
+  <!-- Main Policy Content -->
+  <main class="flex-1 max-w-4xl mx-auto w-full px-6 py-12 space-y-8">
+    <div class="space-y-2 border-b border-hairlineLight pb-6">
+      <div class="text-xs uppercase tracking-widest text-shade50 font-mono">Notice Version: v2.1_dpdp2025 · Effective Date: January 1, 2025</div>
+      <h1 class="text-3xl sm:text-4xl font-light tracking-tight font-display">Digital Personal Data Protection Notice & Privacy Policy</h1>
+      <p class="text-sm text-shade50 leading-relaxed">
+        This statutory notice is issued by Artisan Crafts Private Limited in compliance with Section 5 and Section 6 of the <strong>Digital Personal Data Protection Act, 2025 (DPDP Act)</strong>.
+      </p>
+    </div>
+
+    <!-- Section 1 -->
+    <section class="space-y-3">
+      <h2 class="text-xl font-medium font-display">1. Purpose and Categories of Personal Data Processed</h2>
+      <p class="text-sm text-shade50 leading-relaxed">
+        We collect and process digital personal data exclusively under specified, lawful purposes consented to by you or permissible under applicable Indian law:
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        <div class="p-4 rounded-xl bg-white border border-hairlineLight space-y-2">
+          <div class="font-semibold text-xs uppercase tracking-wider text-black">A. Essential Processing</div>
+          <div class="text-xs text-shade50">Full Name, Delivery Address, Phone Number, and Payment references for order delivery, billing, and tax compliance (GST).</div>
+          <span class="inline-block text-[10px] font-bold px-2 py-0.5 rounded bg-shade30 text-black">Mandatory</span>
+        </div>
+
+        <div class="p-4 rounded-xl bg-pistachio border border-hairlineLight space-y-2">
+          <div class="font-semibold text-xs uppercase tracking-wider text-black">B. Promotional Offers & SMS</div>
+          <div class="text-xs text-black/80">Direct mobile SMS and email alerts regarding seasonal discounts and flash sale campaigns.</div>
+          <span class="inline-block text-[10px] font-bold px-2 py-0.5 rounded bg-black text-white">Consensual / Revocable</span>
+        </div>
+
+        <div class="p-4 rounded-xl bg-aloe border border-hairlineLight space-y-2">
+          <div class="font-semibold text-xs uppercase tracking-wider text-black">C. Storefront Personalization</div>
+          <div class="text-xs text-black/80">Pseudonymized browsing telemetry to recommend relevant artisan collections.</div>
+          <span class="inline-block text-[10px] font-bold px-2 py-0.5 rounded bg-black text-white">Consensual / Revocable</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="space-y-3">
+      <h2 class="text-xl font-medium font-display">2. Real-Time Hot-Path Consent Verification & Zero-PII Egress</h2>
+      <p class="text-sm text-shade50 leading-relaxed">
+        Our enterprise applications use a federated Two-Plane architecture. All marketing and non-essential transactions are inspected by a local, in-VPC <strong>Zone Agent</strong> in real-time ($< 1\text{ms}$). Raw customer identifiers (Aadhaar, PAN, Card credentials) remain strictly within local encrypted databases and are never transmitted to external SaaS platforms.
+      </p>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="space-y-3">
+      <h2 class="text-xl font-medium font-display">3. Your Statutory Rights as a Data Principal</h2>
+      <div class="space-y-2 text-sm text-shade50">
+        <p>Under the DPDP Act 2025, you possess enforceable legal rights:</p>
+        <ul class="list-disc pl-5 space-y-1 text-black">
+          <li><strong>Right to Access (Section 11):</strong> Download a complete machine-readable copy of your personal data and processing history.</li>
+          <li><strong>Right to Correction & Erasure (Section 12):</strong> Request immediate erasure of your data across all transactional and analytical databases.</li>
+          <li><strong>Right to Withdraw Consent (Section 6(4)):</strong> Withdraw consent for marketing or analytics with instant effect without penalty.</li>
+          <li><strong>Right to Nominate:</strong> Nominate an individual to exercise rights on your behalf in the event of death or incapacity.</li>
+        </ul>
+      </div>
+
+      <div class="pt-3">
+        <a href="/privacy-center" class="inline-flex items-center space-x-2 px-6 py-3 rounded-full text-xs font-semibold bg-black text-white hover:bg-shade70 transition-all shadow-md">
+          <span>Go to Self-Service Privacy & Rights Portal →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="space-y-3 p-6 rounded-2xl bg-white border border-hairlineLight">
+      <h2 class="text-lg font-medium font-display">4. Data Protection Officer (DPO) Contact Details</h2>
+      <div class="text-xs text-shade50 space-y-1 font-mono">
+        <div><strong class="text-black">Officer:</strong> Ananya Iyer, Chief Privacy & Data Protection Officer</div>
+        <div><strong class="text-black">Direct Contact:</strong> dpo@enterprise-corp.in</div>
+        <div><strong class="text-black">Regulatory Authority:</strong> Data Protection Board of India (DPBI), New Delhi</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-canvasNight text-white py-8 px-6 text-xs text-center border-t border-white/10 font-light text-shade30">
+    © 2025 Artisan Crafts Enterprise. All rights reserved. Operating under Digital Personal Data Protection Act (DPDP Act 2025).
+  </footer>
+
+</body>
+</html>

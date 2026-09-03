@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPDP Compliance Control Plane — DPO Governance Portal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#010102',
+            surface1: '#0e1015',
+            surface2: '#161922',
+            surface3: '#1f232e',
+            surface4: '#282d3b',
+            hairline: '#23252a',
+            hairlineStrong: '#30343e',
+            primary: '#5e6ad2',
+            primaryHover: '#828fff',
+            primaryFocus: '#5e69d1',
+            ink: '#f7f8f8',
+            inkMuted: '#d0d6e0',
+            inkSubtle: '#8a8f98',
+            inkTertiary: '#62666d',
+            semanticSuccess: '#27a644',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', 'SF Mono', 'JetBrains Mono', 'Menlo', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #010102;
+      color: #f7f8f8;
+      letter-spacing: -0.01em;
+    }
+    .hairline-border {
+      border: 1px solid #23252a;
+    }
+    .hairline-border-strong {
+      border: 1px solid #30343e;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0e1015;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #23252a;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-primary selection:text-white">
+
+  <!-- Top Sticky Navigation (Linear Aesthetic) -->
+  <header class="sticky top-0 z-50 bg-canvas/90 backdrop-blur-md border-b hairline-border px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="w-6 h-6 rounded-md bg-primary flex items-center justify-center font-bold text-xs text-white shadow-sm">
+        DP
+      </div>
+      <span class="font-semibold text-ink text-sm tracking-tight">DPDP Act 2025</span>
+      <span class="text-inkTertiary text-xs px-2 py-0.5 rounded bg-surface2 border hairline-border font-mono">Control Plane v1.0</span>
+    </div>
+
+    <!-- Center Nav Tabs -->
+    <nav class="flex items-center space-x-1 bg-surface1 p-1 rounded-lg border hairline-border text-xs">
+      <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-3 py-1.5 rounded-md text-ink font-medium bg-surface2 transition-all">
+        Overview
+      </button>
+      <button onclick="switchTab('datamap')" id="tab-datamap" class="tab-btn px-3 py-1.5 rounded-md text-inkSubtle hover:text-ink transition-all">
+        Data Map & PII
+      </button>
+      <button onclick="switchTab('consents')" id="tab-consents" class="tab-btn px-3 py-1.5 rounded-md text-inkSubtle hover:text-ink transition-all">
+        Consent Ledger
+      </button>
+      <button onclick="switchTab('dsr')" id="tab-dsr" class="tab-btn px-3 py-1.5 rounded-md text-inkSubtle hover:text-ink transition-all">
+        DSR Erasure Sagas
+      </button>
+      <button onclick="switchTab('ledger')" id="tab-ledger" class="tab-btn px-3 py-1.5 rounded-md text-inkSubtle hover:text-ink transition-all">
+        Audit Ledger
+      </button>
+      <button onclick="switchTab('agents')" id="tab-agents" class="tab-btn px-3 py-1.5 rounded-md text-inkSubtle hover:text-ink transition-all">
+        Agent Fleet
+      </button>
+    </nav>
+
+    <!-- Right Quick Actions & DPO Officer Profile -->
+    <div class="flex items-center space-x-3">
+      <button onclick="openEnrollAgentModal()" class="px-3 py-1.5 rounded-md text-xs font-medium bg-surface1 hover:bg-surface2 text-primaryHover border hairline-border transition-all flex items-center space-x-1">
+        <span>+ Enroll Agent</span>
+      </button>
+      <button onclick="openDsrModal()" class="px-3 py-1.5 rounded-md text-xs font-medium bg-surface1 hover:bg-surface2 text-ink border hairline-border transition-all">
+        + Dispatch DSR
+      </button>
+      <button onclick="verifyLedgerIntegrity()" class="px-3 py-1.5 rounded-md text-xs font-medium bg-primary hover:bg-primaryHover text-white shadow-sm transition-all flex items-center space-x-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+        <span>Verify Ledger</span>
+      </button>
+      
+      <!-- DPO User Badge -->
+      <div id="dpo-user-badge" class="flex items-center space-x-2 pl-2 border-l hairline-border">
+        <div class="w-7 h-7 rounded-full bg-surface2 border hairline-border flex items-center justify-center text-xs font-bold text-ink">
+          AI
+        </div>
+        <div class="text-left hidden lg:block">
+          <div id="dpo-officer-name" class="text-xs font-medium text-ink">Ananya Iyer</div>
+          <div id="dpo-officer-role" class="text-[10px] text-inkTertiary font-mono">DPO_ADMIN</div>
+        </div>
+        <button onclick="toggleDpoAuthModal()" title="Switch DPO Account" class="text-inkSubtle hover:text-ink text-xs p-1">
+          🔑
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-6 space-y-6">
+
+    <!-- Hero Scorecard Bar -->
+    <section class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <!-- Overall Compliance Score -->
+      <div class="bg-surface1 p-5 rounded-xl border hairline-border flex items-center justify-between">
+        <div>
+          <div class="text-xs uppercase tracking-wider text-inkSubtle font-medium">Compliance Grade</div>
+          <div class="text-3xl font-bold text-ink mt-1 flex items-baseline space-x-2">
+            <span id="stat-grade">A+</span>
+            <span id="stat-score" class="text-sm font-normal text-semanticSuccess">98% Compliant</span>
+          </div>
+          <div class="text-[11px] text-inkTertiary mt-1 font-mono">Standard: DPDP Act 2025</div>
+        </div>
+        <div class="w-12 h-12 rounded-full border-2 border-semanticSuccess/30 bg-semanticSuccess/10 flex items-center justify-center text-semanticSuccess">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+      </div>
+
+      <!-- Agent Fleet Status -->
+      <div class="bg-surface1 p-5 rounded-xl border hairline-border">
+        <div class="text-xs uppercase tracking-wider text-inkSubtle font-medium">Connected Agents</div>
+        <div class="text-3xl font-bold text-ink mt-1 flex items-baseline space-x-2">
+          <span id="stat-agents">1</span>
+          <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-semanticSuccess/20 text-semanticSuccess">Outbound mTLS</span>
+        </div>
+        <div class="text-[11px] text-inkTertiary mt-1">Zero raw PII egress</div>
+      </div>
+
+      <!-- Data Discovery & PII -->
+      <div class="bg-surface1 p-5 rounded-xl border hairline-border">
+        <div class="text-xs uppercase tracking-wider text-inkSubtle font-medium">Classified PII Fields</div>
+        <div class="text-3xl font-bold text-ink mt-1 flex items-baseline space-x-2">
+          <span id="stat-pii">0</span>
+          <span class="text-xs text-inkSubtle font-normal">in <span id="stat-tables">0</span> tables</span>
+        </div>
+        <div class="text-[11px] text-inkTertiary mt-1">Aadhaar, PAN, Phone, Cards</div>
+      </div>
+
+      <!-- Immutable Audit Blocks -->
+      <div class="bg-surface1 p-5 rounded-xl border hairline-border">
+        <div class="text-xs uppercase tracking-wider text-inkSubtle font-medium">Audit Ledger Chain</div>
+        <div class="text-3xl font-bold text-ink mt-1 flex items-baseline space-x-2">
+          <span id="stat-ledger-blocks">0</span>
+          <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-primary/20 text-primaryHover">SHA-256 Chained</span>
+        </div>
+        <div class="text-[11px] text-inkTertiary mt-1 font-mono">Tamper-evident status: <span id="stat-ledger-valid" class="text-semanticSuccess">Valid</span></div>
+      </div>
+    </section>
+
+    <!-- Tab 1: OVERVIEW -->
+    <div id="view-overview" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Live Governance Feed -->
+        <div class="lg:col-span-2 bg-surface1 rounded-xl border hairline-border p-5 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b hairline-border">
+            <h2 class="text-sm font-semibold text-ink flex items-center space-x-2">
+              <span class="w-2 h-2 rounded-full bg-semanticSuccess animate-pulse"></span>
+              <span>Live Compliance Telemetry & Recent Events</span>
+            </h2>
+            <span class="text-xs font-mono text-inkTertiary">Real-time Stream</span>
+          </div>
+          <div id="overview-recent-events" class="space-y-2.5 max-h-[360px] overflow-y-auto custom-scroll">
+            <div class="text-xs text-inkSubtle text-center py-6">Loading telemetry events...</div>
+          </div>
+        </div>
+
+        <!-- Compliance Breakdown Card -->
+        <div class="bg-surface1 rounded-xl border hairline-border p-5 space-y-4">
+          <h2 class="text-sm font-semibold text-ink pb-3 border-b hairline-border">DPDP 2025 Pillar Status</h2>
+          
+          <div class="space-y-3.5 text-xs">
+            <div>
+              <div class="flex justify-between text-inkMuted mb-1">
+                <span>Schema Discovery & Drift</span>
+                <span class="font-mono text-ink font-semibold" id="prog-discovery">100%</span>
+              </div>
+              <div class="w-full h-1.5 bg-surface3 rounded-full overflow-hidden">
+                <div id="bar-discovery" class="h-full bg-primary rounded-full" style="width: 100%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-inkMuted mb-1">
+                <span>Consent & Notice Governance</span>
+                <span class="font-mono text-ink font-semibold" id="prog-consent">95%</span>
+              </div>
+              <div class="w-full h-1.5 bg-surface3 rounded-full overflow-hidden">
+                <div id="bar-consent" class="h-full bg-primary rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-inkMuted mb-1">
+                <span>DSR SLA Adherence (72h limit)</span>
+                <span class="font-mono text-ink font-semibold" id="prog-dsr">100%</span>
+              </div>
+              <div class="w-full h-1.5 bg-surface3 rounded-full overflow-hidden">
+                <div id="bar-dsr" class="h-full bg-primary rounded-full" style="width: 100%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-inkMuted mb-1">
+                <span>Cryptographic Proof Integrity</span>
+                <span class="font-mono text-ink font-semibold text-semanticSuccess" id="prog-ledger">100%</span>
+              </div>
+              <div class="w-full h-1.5 bg-surface3 rounded-full overflow-hidden">
+                <div id="bar-ledger" class="h-full bg-semanticSuccess rounded-full" style="width: 100%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-lg bg-surface2 border hairline-border text-[11px] text-inkMuted">
+            <div class="font-semibold text-ink mb-1">DPO Recommendation:</div>
+            <div id="overview-recommendation">All systems compliant under Digital Personal Data Protection Act 2025.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: DATA MAP & PII DISCOVERY -->
+    <div id="view-datamap" class="hidden space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-base font-semibold text-ink">Enterprise Data Map & PII Classification</h2>
+          <p class="text-xs text-inkSubtle mt-0.5">Discovered via local Zone Agent read-replica sampling. No raw customer data is sent to the Control Plane.</p>
+        </div>
+        <button onclick="triggerRescan()" class="px-3 py-1.5 rounded-md text-xs font-medium bg-surface2 hover:bg-surface3 text-ink border hairline-border flex items-center space-x-1.5 transition-all">
+          <svg class="w-3.5 h-3.5 text-primaryHover" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          <span>Trigger Fleet Rescan</span>
+        </button>
+      </div>
+
+      <div id="datamap-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Tab 3: CONSENT LEDGER -->
+    <div id="view-consents" class="hidden space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-base font-semibold text-ink">Principal Consent Registry</h2>
+          <p class="text-xs text-inkSubtle mt-0.5">Active, partial, and withdrawn consent states across enterprise applications.</p>
+        </div>
+      </div>
+
+      <div class="bg-surface1 rounded-xl border hairline-border overflow-hidden">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-surface2/60 text-inkSubtle border-b hairline-border uppercase text-[10px] tracking-wider">
+            <tr>
+              <th class="py-3 px-4">Principal ID (Pseudonymized)</th>
+              <th class="py-3 px-4">Notice Version</th>
+              <th class="py-3 px-4">Consented Purposes</th>
+              <th class="py-3 px-4">Channel</th>
+              <th class="py-3 px-4">Status</th>
+              <th class="py-3 px-4">Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="consents-table-body" class="divide-y hairline-border font-mono text-[11px]">
+            <!-- Injected via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 4: DSR ERASURE SAGAS -->
+    <div id="view-dsr" class="hidden space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-base font-semibold text-ink">Data Subject Rights (DSR) & Right to Erasure Sagas</h2>
+          <p class="text-xs text-inkSubtle mt-0.5">Distributed execution of deletion requests across heterogeneous data stores with signed proof receipts.</p>
+        </div>
+        <button onclick="openDsrModal()" class="px-3 py-1.5 rounded-md text-xs font-medium bg-primary hover:bg-primaryHover text-white shadow-sm transition-all">
+          + New Erasure Request
+        </button>
+      </div>
+
+      <div class="bg-surface1 rounded-xl border hairline-border overflow-hidden">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-surface2/60 text-inkSubtle border-b hairline-border uppercase text-[10px] tracking-wider">
+            <tr>
+              <th class="py-3 px-4">DSR ID</th>
+              <th class="py-3 px-4">Principal ID</th>
+              <th class="py-3 px-4">Type</th>
+              <th class="py-3 px-4">Saga Tasks</th>
+              <th class="py-3 px-4">Status</th>
+              <th class="py-3 px-4">SLA Deadline</th>
+              <th class="py-3 px-4">Proof Signature</th>
+            </tr>
+          </thead>
+          <tbody id="dsr-table-body" class="divide-y hairline-border font-mono text-[11px]">
+            <!-- Injected via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 5: AUDIT LEDGER EXPLORER -->
+    <div id="view-ledger" class="hidden space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-base font-semibold text-ink">Immutable Append-Only Audit Ledger Explorer</h2>
+          <p class="text-xs text-inkSubtle mt-0.5">Each block is cryptographically chained via SHA-256 (<span class="font-mono text-ink">hash = SHA256(prev_hash + canonical_json(event))</span>).</p>
+        </div>
+        <button onclick="verifyLedgerIntegrity()" class="px-3 py-1.5 rounded-md text-xs font-medium bg-surface2 hover:bg-surface3 text-ink border hairline-border flex items-center space-x-1.5 transition-all">
+          <svg class="w-3.5 h-3.5 text-semanticSuccess" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>Run Cryptographic Verification</span>
+        </button>
+      </div>
+
+      <div id="ledger-blocks-container" class="space-y-3">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Tab 6: AGENT FLEET -->
+    <div id="view-agents" class="hidden space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-base font-semibold text-ink">Registered Zone Agent Fleet</h2>
+          <p class="text-xs text-inkSubtle mt-0.5">In-VPC and on-premise daemons streaming discovery metadata and executing compliance tasks.</p>
+        </div>
+      </div>
+
+      <div id="agents-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- DSR Modal -->
+  <div id="modal-dsr" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-surface1 border hairline-border-strong rounded-xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b hairline-border">
+        <h3 class="text-sm font-semibold text-ink">Dispatch DSR Erasure Saga</h3>
+        <button onclick="closeDsrModal()" class="text-inkSubtle hover:text-ink text-sm">✕</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-inkSubtle mb-1">Data Principal Identifier (Email or User ID)</label>
+          <input id="dsr-input-principal" type="text" placeholder="e.g. user_101 or alice@example.com" class="w-full bg-surface2 border hairline-border rounded-md px-3 py-2 text-ink focus:outline-none focus:border-primaryFocus">
+        </div>
+        <div>
+          <label class="block text-inkSubtle mb-1">DSR Right Type</label>
+          <select id="dsr-input-type" class="w-full bg-surface2 border hairline-border rounded-md px-3 py-2 text-ink focus:outline-none focus:border-primaryFocus">
+            <option value="ERASURE">Right to Erasure (Right to be Forgotten)</option>
+            <option value="ACCESS">Right to Access Personal Data</option>
+            <option value="CORRECTION">Right to Correction & Update</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-inkSubtle mb-1">Initiator / Authorization</label>
+          <input id="dsr-input-by" type="text" value="DPO_OFFICER" class="w-full bg-surface2 border hairline-border rounded-md px-3 py-2 text-ink focus:outline-none focus:border-primaryFocus">
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2 pt-3 border-t hairline-border">
+        <button onclick="closeDsrModal()" class="px-3 py-1.5 rounded-md text-xs text-inkSubtle hover:text-ink bg-surface2">Cancel</button>
+        <button onclick="submitDsrRequest()" class="px-4 py-1.5 rounded-md text-xs font-medium text-white bg-primary hover:bg-primaryHover">Dispatch Saga</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Enroll Agent (Proxmox / Docker / VM) -->
+  <div id="modal-enroll" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-surface1 border hairline-border-strong rounded-xl max-w-xl w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b hairline-border">
+        <div>
+          <h3 class="text-sm font-semibold text-ink">Enroll New Zone Agent (Proxmox / Remote VM)</h3>
+          <p class="text-[11px] text-inkSubtle">One-click deployment script with outbound mTLS & automated network probing.</p>
+        </div>
+        <button onclick="closeEnrollAgentModal()" class="text-inkSubtle hover:text-ink text-sm">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-inkSubtle mb-1">Agent Identifier</label>
+            <input id="enroll-agent-id" type="text" value="agent-proxmox-vm-02" class="w-full bg-surface2 border hairline-border rounded-md px-3 py-2 text-ink font-mono focus:outline-none focus:border-primaryFocus">
+          </div>
+          <div>
+            <label class="block text-inkSubtle mb-1">Target Subnet / Host Range</label>
+            <input id="enroll-target-subnet" type="text" value="192.168.1.0/24" class="w-full bg-surface2 border hairline-border rounded-md px-3 py-2 text-ink font-mono focus:outline-none focus:border-primaryFocus">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-inkSubtle mb-1">Generated Docker Run Command (Copy & Paste on Target VM)</label>
+          <div class="relative">
+            <textarea id="enroll-docker-cmd" rows="4" readonly class="w-full bg-canvas border hairline-border rounded-lg p-3 text-[11px] font-mono text-primaryHover focus:outline-none custom-scroll resize-none"></textarea>
+            <button onclick="copyEnrollCommand()" class="absolute top-2 right-2 px-2.5 py-1 rounded bg-surface3 hover:bg-surface4 text-[10px] text-ink font-mono border hairline-border">
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t hairline-border">
+        <button onclick="closeEnrollAgentModal()" class="px-4 py-1.5 rounded-md text-xs text-ink bg-surface2 hover:bg-surface3">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: DPO Officer Login & Profile Switcher -->
+  <div id="modal-dpo-auth" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-surface1 border hairline-border-strong rounded-xl max-w-sm w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b hairline-border">
+        <h3 class="text-sm font-semibold text-ink">DPO Officer Authentication</h3>
+        <button onclick="toggleDpoAuthModal()" class="text-inkSubtle hover:text-ink text-sm">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-inkSubtle mb-1">Officer Username or Email</label>
+          <input id="dpo-login-username" type="text" value="dpo@enterprise-corp.in" class="w-full bg-surface2 border hairline-border rounded-md px-3 py-2 text-ink focus:outline-none focus:border-primaryFocus">
+        </div>
+        <div>
+          <label class="block text-inkSubtle mb-1">Password</label>
+          <input id="dpo-login-password" type="password" value="Compliance@2025" class="w-full bg-surface2 border hairline-border rounded-md px-3 py-2 text-ink focus:outline-none focus:border-primaryFocus">
+        </div>
+        <div class="p-2.5 rounded bg-surface2 border hairline-border text-[11px] text-inkSubtle space-y-1">
+          <div><strong class="text-ink">Demo Accounts:</strong></div>
+          <div>• Principal DPO: <code>dpo@enterprise-corp.in</code> (Compliance@2025)</div>
+          <div>• Lead Auditor: <code>auditor@compliance-audit.org</code> (Auditor@2025)</div>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t hairline-border">
+        <button onclick="toggleDpoAuthModal()" class="px-3 py-1.5 rounded-md text-xs text-inkSubtle bg-surface2">Cancel</button>
+        <button onclick="submitDpoLogin()" class="px-4 py-1.5 rounded-md text-xs font-medium text-white bg-primary hover:bg-primaryHover">Authenticate</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
