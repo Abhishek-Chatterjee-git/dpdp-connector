@@ -296,3 +296,8 @@ function checkExistingSession() {
 checkExistingSession();
 fetchCatalog();
 updateCartBadge();
+
+// Auto-refresh inventory stock counts in background every 3 seconds
+setInterval(() => {
+  fetchCatalog();
+}, 3000);

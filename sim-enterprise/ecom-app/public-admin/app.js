@@ -57,10 +57,12 @@ function switchTab(tab) {
   }
 }
 
-// 1. Fetch Inventory
-async function fetchInventory() {
+// 1. Fetch Inventory with silent auto-refresh support
+async function fetchInventory(silent = false) {
   const tbody = document.getElementById('inventory-tbody');
-  tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">Loading products...</td></tr>`;
+  if (!silent && (!tbody.innerHTML || tbody.innerHTML.trim() === '')) {
+    tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">Loading products...</td></tr>`;
+  }
 
   try {
     const res = await fetch('/api/admin/inventory');
@@ -87,9 +89,9 @@ async function fetchInventory() {
         <td class="p-4 font-semibold text-slate-900">₹${Number(p.price).toFixed(2)}</td>
         <td class="p-4">
           <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold ${
-            p.stock > 5 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'
+            p.stock > 5 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : p.stock > 0 ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-red-50 text-red-700 border border-red-200'
           }">
-            ${p.stock} units
+            ${p.stock} units ${p.stock <= 0 ? '(Sold Out)' : ''}
           </span>
         </td>
         <td class="p-4 text-right">
@@ -100,14 +102,16 @@ async function fetchInventory() {
       )
       .join('');
   } catch (err) {
-    tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-red-500">Failed to load inventory.</td></tr>`;
+    if (!silent) tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-red-500">Failed to load inventory.</td></tr>`;
   }
 }
 
-// 2. Fetch Orders
-async function fetchOrders() {
+// 2. Fetch Orders with silent auto-refresh support
+async function fetchOrders(silent = false) {
   const tbody = document.getElementById('orders-tbody');
-  tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">Loading orders...</td></tr>`;
+  if (!silent && (!tbody.innerHTML || tbody.innerHTML.trim() === '')) {
+    tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">Loading orders...</td></tr>`;
+  }
 
   try {
     const res = await fetch('/api/admin/orders');
@@ -129,7 +133,8 @@ async function fetchOrders() {
           <div class="text-[10px] text-slate-400">${o.customer_email}</div>
         </td>
         <td class="p-4">
-          <div class="text-[11px] text-slate-700">${o.items.map((i) => `${i.qty}× ${i.title}`).join(', ')}</div>
+          <div class="text-[11px] text-slate-700 font-medium">${o.items.map((i) => `${i.qty}× ${i.title}`).join(', ')}</div>
+          <div class="text-[10px] text-slate-400">Deliver to: ${o.shipping_address || 'Customer Address'}</div>
         </td>
         <td class="p-4 font-semibold text-slate-900">₹${Number(o.total_amount).toFixed(2)}</td>
         <td class="p-4">
@@ -143,14 +148,16 @@ async function fetchOrders() {
       )
       .join('');
   } catch (err) {
-    tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">Failed to load orders.</td></tr>`;
+    if (!silent) tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">Failed to load orders.</td></tr>`;
   }
 }
 
-// 3. Fetch Customers
-async function fetchCustomers() {
+// 3. Fetch Customers with silent auto-refresh support
+async function fetchCustomers(silent = false) {
   const tbody = document.getElementById('customers-tbody');
-  tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">Loading customers...</td></tr>`;
+  if (!silent && (!tbody.innerHTML || tbody.innerHTML.trim() === '')) {
+    tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">Loading customers...</td></tr>`;
+  }
 
   try {
     const res = await fetch('/api/admin/customers');
@@ -181,7 +188,7 @@ async function fetchCustomers() {
       )
       .join('');
   } catch (err) {
-    tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">Failed to load customers.</td></tr>`;
+    if (!silent) tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">Failed to load customers.</td></tr>`;
   }
 }
 
@@ -266,11 +273,22 @@ async function updateStockPrompt(productId, currentStock) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ productId, stock: parseInt(newStock, 10) }),
     });
-    if (res.ok) fetchInventory();
+    if (res.ok) fetchInventory(true);
   } catch (e) {
     alert('Failed to update stock');
   }
 }
+
+// Continuous Background Auto-Refresh (every 2.5 seconds)
+setInterval(() => {
+  if (activeTab === 'inventory') {
+    fetchInventory(true);
+  } else if (activeTab === 'orders') {
+    fetchOrders(true);
+  } else if (activeTab === 'customers') {
+    fetchCustomers(true);
+  }
+}, 2500);
 
 // Initial load
 fetchInventory();

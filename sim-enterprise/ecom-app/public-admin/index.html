@@ -78,9 +78,15 @@
     
     <!-- Top Header -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-cardBorder">
-      <div>
-        <h2 id="view-title" class="text-2xl font-bold text-slate-900 tracking-tight">Inventory & Catalog Management</h2>
-        <p id="view-subtitle" class="text-xs text-slate-500 mt-0.5">Manage live artisan inventory, pricing, and stock allocations.</p>
+      <div class="space-y-1">
+        <div class="flex items-center space-x-3">
+          <h2 id="view-title" class="text-2xl font-bold text-slate-900 tracking-tight">Inventory & Catalog Management</h2>
+          <span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-mono font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Live Auto-Sync Active</span>
+          </span>
+        </div>
+        <p id="view-subtitle" class="text-xs text-slate-500">Manage live artisan inventory, pricing, and stock allocations.</p>
       </div>
 
       <div id="top-action-container">
