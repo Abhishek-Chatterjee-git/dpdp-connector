@@ -33,7 +33,7 @@ services:
     depends_on:
       - control-plane
 
-  # Demo E-Commerce Enterprise App
+  # Enterprise E-Commerce Storefront & Operations App
   ecom-app:
     build:
       context: .
@@ -41,12 +41,11 @@ services:
     container_name: dpdp-ecom-app
     ports:
       - "3000:3000"
+      - "3001:3001"
     environment:
       - ECOM_PORT=3000
-      - AGENT_URL=http://zone-agent:5000
-      - CONTROL_PLANE_URL=http://control-plane:4000
+      - ADMIN_PORT=3001
+      - DB_PATH=/app/data/enterprise_data.sqlite
+      - NODE_ENV=production
     volumes:
       - ./data/enterprise:/app/data
-    depends_on:
-      - zone-agent
-      - control-plane
