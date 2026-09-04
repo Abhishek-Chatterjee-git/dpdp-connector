@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Admin & Operations Console — Artisan Crafts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sidebarBg: '#0e1117',
+            mainBg: '#f8fafc',
+            cardBorder: '#e2e8f0',
+            primaryIndigo: '#4f46e5',
+            ink: '#0f172a',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-mainBg text-ink font-sans flex antialiased">
+
+  <!-- Left Dark Navigation Sidebar -->
+  <aside class="w-64 bg-sidebarBg text-slate-300 flex flex-col justify-between shrink-0 h-screen sticky top-0 border-r border-slate-800">
+    <div class="p-6 space-y-6">
+      <div class="flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white text-sm">
+          AC
+        </div>
+        <div>
+          <h1 class="text-sm font-semibold text-white tracking-wide">Artisan Crafts</h1>
+          <span class="text-[10px] text-indigo-400 font-mono">Operations Portal</span>
+        </div>
+      </div>
+
+      <nav class="space-y-1 text-xs">
+        <button onclick="switchTab('inventory')" id="tab-btn-inventory" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg bg-slate-800 text-white font-medium transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+          <span>Inventory & Catalog</span>
+        </button>
+
+        <button onclick="switchTab('orders')" id="tab-btn-orders" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+          <span>Customer Orders</span>
+        </button>
+
+        <button onclick="switchTab('customers')" id="tab-btn-customers" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <span>Registered Customers</span>
+        </button>
+
+        <button onclick="switchTab('employees')" id="tab-btn-employees" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+          <span>Staff & HR Directory</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Logged in Admin Badge -->
+    <div class="p-4 border-t border-slate-800 text-xs">
+      <div class="flex items-center justify-between">
+        <div>
+          <div id="admin-user-name" class="font-medium text-white">Rajesh Kumar</div>
+          <div class="text-[10px] text-slate-400">Store Manager</div>
+        </div>
+        <a href="http://localhost:3000" target="_blank" class="text-[10px] text-indigo-400 hover:underline">
+          View Store ↗
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Work Area -->
+  <main class="flex-1 p-8 space-y-6 overflow-y-auto max-h-screen">
+    
+    <!-- Top Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-cardBorder">
+      <div>
+        <h2 id="view-title" class="text-2xl font-bold text-slate-900 tracking-tight">Inventory & Catalog Management</h2>
+        <p id="view-subtitle" class="text-xs text-slate-500 mt-0.5">Manage live artisan inventory, pricing, and stock allocations.</p>
+      </div>
+
+      <div id="top-action-container">
+        <button onclick="openAddProductModal()" class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 shadow-sm flex items-center space-x-1.5 transition-all">
+          <span>+ Add New Product</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section 1: Inventory Table -->
+    <div id="sec-inventory" class="space-y-4">
+      <div class="bg-white rounded-xl border border-cardBorder shadow-sm overflow-hidden">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-cardBorder text-slate-500 uppercase tracking-wider font-semibold">
+              <th class="p-4">Item</th>
+              <th class="p-4">Category</th>
+              <th class="p-4">Price</th>
+              <th class="p-4">Stock Units</th>
+              <th class="p-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="inventory-tbody" class="divide-y divide-cardBorder">
+            <!-- Injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 2: Orders Table -->
+    <div id="sec-orders" class="space-y-4 hidden">
+      <div class="bg-white rounded-xl border border-cardBorder shadow-sm overflow-hidden">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-cardBorder text-slate-500 uppercase tracking-wider font-semibold">
+              <th class="p-4">Order ID</th>
+              <th class="p-4">Customer</th>
+              <th class="p-4">Items</th>
+              <th class="p-4">Total Amount</th>
+              <th class="p-4">Status</th>
+              <th class="p-4">Date</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody" class="divide-y divide-cardBorder">
+            <!-- Injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 3: Customers Table -->
+    <div id="sec-customers" class="space-y-4 hidden">
+      <div class="bg-white rounded-xl border border-cardBorder shadow-sm overflow-hidden">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-cardBorder text-slate-500 uppercase tracking-wider font-semibold">
+              <th class="p-4">Customer Name</th>
+              <th class="p-4">Email</th>
+              <th class="p-4">Phone</th>
+              <th class="p-4">City</th>
+              <th class="p-4">DPDP Consent Preferences</th>
+              <th class="p-4">Joined</th>
+            </tr>
+          </thead>
+          <tbody id="customers-tbody" class="divide-y divide-cardBorder">
+            <!-- Injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 4: Employees Table -->
+    <div id="sec-employees" class="space-y-4 hidden">
+      <div class="bg-white rounded-xl border border-cardBorder shadow-sm overflow-hidden">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-cardBorder text-slate-500 uppercase tracking-wider font-semibold">
+              <th class="p-4">Employee ID</th>
+              <th class="p-4">Name</th>
+              <th class="p-4">Department</th>
+              <th class="p-4">Role</th>
+              <th class="p-4">Monthly Salary</th>
+              <th class="p-4">PAN Ref</th>
+            </tr>
+          </thead>
+          <tbody id="employees-tbody" class="divide-y divide-cardBorder">
+            <!-- Injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal: Add Product -->
+  <div id="modal-add-product" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-cardBorder">
+      <div class="flex items-center justify-between pb-3 border-b border-cardBorder">
+        <h3 class="text-base font-bold text-slate-900">Add New Inventory Product</h3>
+        <button onclick="closeAddProductModal()" class="text-slate-400 hover:text-slate-600">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Product Title</label>
+          <input id="new-title" type="text" placeholder="e.g. Handwoven Silk Pashmina" class="w-full border border-cardBorder rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-indigo-600">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Category</label>
+            <input id="new-category" type="text" placeholder="Textiles" class="w-full border border-cardBorder rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-indigo-600">
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Emoji Icon</label>
+            <input id="new-emoji" type="text" value="📦" class="w-full border border-cardBorder rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-indigo-600">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Price (₹ INR)</label>
+            <input id="new-price" type="number" placeholder="2499" class="w-full border border-cardBorder rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-indigo-600">
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Initial Stock</label>
+            <input id="new-stock" type="number" value="20" class="w-full border border-cardBorder rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-indigo-600">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Description</label>
+          <textarea id="new-desc" rows="2" placeholder="Artisan handcrafted piece..." class="w-full border border-cardBorder rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-indigo-600"></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t border-cardBorder">
+        <button onclick="closeAddProductModal()" class="px-4 py-2 rounded-lg text-xs text-slate-600 hover:bg-slate-100">Cancel</button>
+        <button onclick="submitNewProduct()" class="px-5 py-2 rounded-lg text-xs font-semibold bg-indigo-600 text-white hover:bg-indigo-700">Save Product</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

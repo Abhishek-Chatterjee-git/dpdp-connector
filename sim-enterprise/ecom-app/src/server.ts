@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { join, extname, dirname } from 'node:path';
 import { URL, fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
-import { EcomDatabase } from './db.js';
+import { EnterpriseDatabase } from './db.js';
 import { CustomerAuthService } from './auth.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,68 +11,21 @@ const __dirname = dirname(__filename);
 
 export interface EcomServerConfig {
   port: number;
-  agentUrl: string;
-  controlPlaneUrl: string;
 }
-
-export const STORE_CATALOG = [
-  {
-    id: 'prod_vase_01',
-    title: 'Hand-thrown Terracotta Indigo Vase',
-    category: 'Home & Living',
-    price: 2499.00,
-    rating: 4.9,
-    emoji: '🏺',
-    description: 'Sculpted by master potters from Jaipur using organic earthen clay and natural botanical indigo glaze.',
-    stock: 12,
-  },
-  {
-    id: 'prod_mug_02',
-    title: 'Wabi-Sabi Ceramic Teaware (Set of 2)',
-    category: 'Kitchen & Dining',
-    price: 1499.00,
-    rating: 4.8,
-    emoji: '🍵',
-    description: 'Double-fired stoneware mugs featuring unique reactive glaze finishes. Microwave and dishwasher safe.',
-    stock: 25,
-  },
-  {
-    id: 'prod_blanket_03',
-    title: 'Pure Cashmere Organic Throw Blanket',
-    category: 'Textiles & Apparel',
-    price: 4999.00,
-    rating: 5.0,
-    emoji: '🧣',
-    description: 'Hand-loomed in the Himalayan valleys from ethically gathered grade-A mountain cashmere wool.',
-    stock: 8,
-  },
-  {
-    id: 'prod_lamp_04',
-    title: 'Hammered Brass Moroccan Table Lantern',
-    category: 'Lighting & Decor',
-    price: 3299.00,
-    rating: 4.7,
-    emoji: '🏮',
-    description: 'Intricately perforated brass casing creates warm, mesmerizing ambient geometric shadow projections.',
-    stock: 15,
-  }
-];
 
 export class EcomServer {
   private config: EcomServerConfig;
-  private db: EcomDatabase;
+  private db: EnterpriseDatabase;
   private authService: CustomerAuthService | null = null;
   private server: Server | null = null;
   private publicDir: string;
 
-  constructor(config?: Partial<EcomServerConfig>, db?: EcomDatabase) {
+  constructor(config?: Partial<EcomServerConfig>, db?: EnterpriseDatabase) {
     this.config = {
       port: parseInt(process.env.ECOM_PORT || '3000', 10),
-      agentUrl: process.env.AGENT_URL || 'http://127.0.0.1:5000',
-      controlPlaneUrl: process.env.CONTROL_PLANE_URL || 'http://127.0.0.1:4000',
       ...config,
     };
-    this.db = db || new EcomDatabase();
+    this.db = db || new EnterpriseDatabase();
     this.publicDir = join(__dirname, '../public');
   }
 
@@ -83,7 +36,7 @@ export class EcomServer {
     return new Promise((resolve) => {
       this.server = createServer((req, res) => this.handleRequest(req, res));
       this.server.listen(this.config.port, () => {
-        console.log(`[E-Commerce App] Production Storefront running at http://localhost:${this.config.port}`);
+        console.log(`[Customer Storefront] Production E-Commerce App running at http://localhost:${this.config.port}`);
         resolve();
       });
     });
@@ -129,7 +82,7 @@ export class EcomServer {
 
       this.serveStaticFile(pathname, res);
     } catch (err: any) {
-      console.error('[Ecom App] Request error:', err);
+      console.error('[Customer Storefront] Request error:', err);
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: err?.message || 'Internal Server Error' }));
     }
@@ -150,9 +103,10 @@ export class EcomServer {
     const db = this.db.getDb();
     const authService = this.authService!;
 
-    // 1. Product Catalog: GET /api/catalog/products
+    // 1. Live Product Catalog: GET /api/catalog/products
     if (method === 'GET' && pathname === '/api/catalog/products') {
-      return json({ products: STORE_CATALOG });
+      const products = db.prepare('SELECT * FROM products ORDER BY created_at ASC').all();
+      return json({ products });
     }
 
     // 2. Signup with DPDP Statutory Consent: POST /api/auth/signup
@@ -164,9 +118,19 @@ export class EcomServer {
       const { email, password, fullName, phone, aadhaarNo, panNo, streetAddress, city, consents } = body;
       const consentedPurposes: string[] = consents || ['essential'];
 
+      if (!email || !password || !fullName || !phone) {
+        return json({ error: 'Please provide full name, email, phone, and password.' }, 400);
+      }
+
+      // Check if user already exists
+      const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
+      if (existing) {
+        return json({ error: 'An account with this email address already exists.' }, 400);
+      }
+
       db.prepare(`
-        INSERT INTO users (id, email, full_name, phone, aadhaar_no, pan_no, street_address, city, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO users (id, email, full_name, phone, aadhaar_no, pan_no, street_address, city, consent_purposes, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `).run(
         userId,
         email,
@@ -176,63 +140,27 @@ export class EcomServer {
         panNo || null,
         streetAddress || null,
         city || null,
+        JSON.stringify(consentedPurposes),
         now
       );
 
       // Save password credentials
-      authService.setPassword(userId, password || 'Password@123');
+      authService.setPassword(userId, password);
 
-      // Create initial payment method
-      db.prepare(`
-        INSERT INTO payment_methods (id, user_id, card_number, upi_id, is_default, created_at)
-        VALUES (?, ?, ?, ?, 1, ?)
-      `).run(`pay_${randomUUID().slice(0, 6)}`, userId, '4532015112830366', `${email.split('@')[0]}@okaxis`, now);
-
-      // Sync consent with Control Plane
-      try {
-        await fetch(`${this.config.controlPlaneUrl}/api/v1/consent/record`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            principalId: userId,
-            noticeVersion: 'v2.1_dpdp2025',
-            purposes: consentedPurposes,
-            channel: 'ecom_web_signup',
-          }),
-        });
-      } catch (e) {
-        console.warn('[Ecom App] Control plane sync warning:', e);
-      }
-
-      // Seed Zone Agent in-memory consent cache
-      try {
-        await fetch(`${this.config.agentUrl}/consent/cache/set`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            principalId: userId,
-            noticeVersion: 'v2.1_dpdp2025',
-            purposes: consentedPurposes,
-          }),
-        });
-      } catch (e) {
-        console.warn('[Ecom App] Agent cache seeding warning:', e);
-      }
-
-      const loginRes = authService.login(email, password || 'Password@123');
+      const loginRes = authService.login(email, password);
 
       return json({
         success: true,
         session: loginRes.session,
-        user: { id: userId, email, fullName, phone, consentedPurposes },
+        user: { id: userId, email, fullName, phone, consentPurposes: consentedPurposes },
       });
     }
 
     // 3. Customer Login: POST /api/auth/login
     if (method === 'POST' && pathname === '/api/auth/login') {
       const body = await this.readJsonBody(req);
-      const email = body.email || 'aarav.sharma@example.com';
-      const password = body.password || 'Aarav@2025';
+      const email = body.email || '';
+      const password = body.password || '';
 
       const authRes = authService.login(email, password);
       if (!authRes.success) {
@@ -240,16 +168,14 @@ export class EcomServer {
       }
 
       const user = authRes.user!;
-      const payments = db.prepare('SELECT * FROM payment_methods WHERE user_id = ?').all(user.id) as unknown as any[];
-      const orders = db.prepare('SELECT * FROM orders WHERE user_id = ?').all(user.id) as unknown as any[];
+      const orders = db.prepare('SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC').all(user.id) as unknown as any[];
 
       return json({
         success: true,
         session: authRes.session,
         user: {
           ...user,
-          paymentMethods: payments,
-          orders,
+          orders: orders.map((o) => ({ ...o, items: JSON.parse(o.items || '[]') })),
         },
       });
     }
@@ -264,8 +190,12 @@ export class EcomServer {
       const user = db.prepare('SELECT * FROM users WHERE id = ?').get(session.userId) as unknown as any;
       if (!user) return json({ error: 'User not found' }, 404);
 
-      const payments = db.prepare('SELECT * FROM payment_methods WHERE user_id = ?').all(user.id) as unknown as any[];
-      const orders = db.prepare('SELECT * FROM orders WHERE user_id = ?').all(user.id) as unknown as any[];
+      const orders = db.prepare('SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC').all(user.id) as unknown as any[];
+
+      let consentPurposes = ['essential'];
+      try {
+        consentPurposes = JSON.parse(user.consent_purposes || '[]');
+      } catch {}
 
       return json({
         user: {
@@ -277,8 +207,8 @@ export class EcomServer {
           panNo: user.pan_no,
           streetAddress: user.street_address,
           city: user.city,
-          paymentMethods: payments,
-          orders,
+          consentPurposes,
+          orders: orders.map((o) => ({ ...o, items: JSON.parse(o.items || '[]') })),
         },
       });
     }
@@ -290,15 +220,20 @@ export class EcomServer {
       const orderId = `ord_${randomUUID().slice(0, 8)}`;
       const now = new Date().toISOString();
 
+      // Decrement stock for ordered items
+      for (const item of items || []) {
+        db.prepare('UPDATE products SET stock = MAX(0, stock - ?) WHERE id = ?').run(item.qty || 1, item.id);
+      }
+
       db.prepare(`
-        INSERT INTO orders (id, user_id, items, total_amount, status, created_at)
-        VALUES (?, ?, ?, ?, 'ORDER_CONFIRMED', ?)
-      `).run(orderId, userId, JSON.stringify(items), totalAmount, now);
+        INSERT INTO orders (id, user_id, items, total_amount, shipping_address, status, created_at)
+        VALUES (?, ?, ?, ?, ?, 'CONFIRMED', ?)
+      `).run(orderId, userId, JSON.stringify(items), totalAmount, shippingAddress || 'Default Address', now);
 
       return json({
         success: true,
         orderId,
-        status: 'ORDER_CONFIRMED',
+        status: 'CONFIRMED',
         totalAmount,
         estimatedDelivery: new Date(Date.now() + 3 * 24 * 3600 * 1000).toDateString(),
         dpdpReceipt: {
@@ -311,120 +246,75 @@ export class EcomServer {
 
     // 6. Right to Access Data Export: GET /api/privacy/data-export
     if (method === 'GET' && pathname === '/api/privacy/data-export') {
-      const userId = url.searchParams.get('userId') || 'usr_aarav';
+      const userId = url.searchParams.get('userId');
+      if (!userId) return json({ error: 'User ID required' }, 400);
+
       const user = db.prepare('SELECT * FROM users WHERE id = ?').get(userId) as unknown as any;
       if (!user) return json({ error: 'User not found' }, 404);
 
-      const payments = db.prepare('SELECT * FROM payment_methods WHERE user_id = ?').all(userId) as unknown as any[];
       const orders = db.prepare('SELECT * FROM orders WHERE user_id = ?').all(userId) as unknown as any[];
 
       return json({
         dataPrincipalId: user.id,
         exportedAt: new Date().toISOString(),
         governingLaw: 'Digital Personal Data Protection Act 2025, Section 11 (Right to Access)',
-        profile: user,
-        paymentInstruments: payments,
-        orderHistory: orders,
+        profile: {
+          id: user.id,
+          fullName: user.full_name,
+          email: user.email,
+          phone: user.phone,
+          city: user.city,
+          streetAddress: user.street_address,
+          consentPurposes: JSON.parse(user.consent_purposes || '[]'),
+          registeredAt: user.created_at,
+        },
+        orderHistory: orders.map((o) => ({ ...o, items: JSON.parse(o.items || '[]') })),
       });
     }
 
-    // 7. Privacy Portal - Withdraw Consent: POST /api/privacy/consent/withdraw
+    // 7. Privacy Portal - Update/Withdraw Consent: POST /api/privacy/consent/withdraw
     if (method === 'POST' && pathname === '/api/privacy/consent/withdraw') {
       const body = await this.readJsonBody(req);
-      const { userId, purposesWithdrawn, reason } = body;
+      const { userId, purposesWithdrawn } = body;
 
-      try {
-        const cpRes = await fetch(`${this.config.controlPlaneUrl}/api/v1/consent/withdraw`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            principalId: userId,
-            purposesWithdrawn: purposesWithdrawn || ['marketing_promo'],
-            reason: reason || 'customer_portal_withdrawal',
-          }),
-        });
-        const result = await cpRes.json();
-        return json(result);
-      } catch (err: any) {
-        return json({ error: 'Failed to communicate with Control Plane' }, 500);
-      }
+      const user = db.prepare('SELECT consent_purposes FROM users WHERE id = ?').get(userId) as any;
+      if (!user) return json({ error: 'User not found' }, 404);
+
+      let currentPurposes: string[] = JSON.parse(user.consent_purposes || '["essential"]');
+      currentPurposes = currentPurposes.filter((p) => !(purposesWithdrawn || []).includes(p));
+
+      db.prepare('UPDATE users SET consent_purposes = ? WHERE id = ?').run(JSON.stringify(currentPurposes), userId);
+
+      return json({
+        success: true,
+        userId,
+        updatedPurposes: currentPurposes,
+        message: 'Consent withdrawal recorded in database',
+      });
     }
 
-    // 8. Privacy Portal - Right to Erasure Request: POST /api/privacy/dsr/erasure
+    // 8. Privacy Portal - Request Account Erasure: POST /api/privacy/dsr/erasure
     if (method === 'POST' && pathname === '/api/privacy/dsr/erasure') {
       const body = await this.readJsonBody(req);
       const { userId } = body;
 
-      try {
-        const dsrRes = await fetch(`${this.config.controlPlaneUrl}/api/v1/dpo/dsr/create`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            principalId: userId,
-            requestType: 'ERASURE',
-            requestedBy: 'DATA_PRINCIPAL_SELF_SERVICE',
-          }),
-        });
-        const result = await dsrRes.json();
-        return json(result);
-      } catch (err: any) {
-        return json({ error: 'Failed to dispatch DSR Erasure request' }, 500);
-      }
-    }
-
-    // 9. Gated Promotional SMS Action: POST /api/marketing/send-promo-sms
-    if (method === 'POST' && pathname === '/api/marketing/send-promo-sms') {
-      const body = await this.readJsonBody(req);
-      const userId = body.userId || 'usr_aarav';
-
-      // --- HOT-PATH REAL-TIME CONSENT CHECK VIA ZONE AGENT (< 1ms) ---
-      let consentAllowed = false;
-      let checkReason = 'agent_unreachable';
-      let latencyMs = 0;
-
-      const startTime = performance.now();
-      try {
-        const agentCheckRes = await fetch(
-          `${this.config.agentUrl}/consent/check?principal_id=${userId}&purpose=marketing_promo`
-        );
-        latencyMs = Math.round((performance.now() - startTime) * 100) / 100;
-
-        if (agentCheckRes.ok) {
-          const checkData = (await agentCheckRes.json()) as { allowed: boolean; reason: string };
-          consentAllowed = checkData.allowed;
-          checkReason = checkData.reason;
-        } else {
-          const checkData = (await agentCheckRes.json()) as { allowed: boolean; reason: string };
-          consentAllowed = false;
-          checkReason = checkData?.reason || 'consent_denied_or_withdrawn';
-        }
-      } catch (err) {
-        console.error('[Ecom App] Zone Agent check error:', err);
-        latencyMs = Math.round((performance.now() - startTime) * 100) / 100;
-        consentAllowed = false;
-        checkReason = 'agent_connection_failed';
-      }
-
-      if (!consentAllowed) {
-        return json(
-          {
-            success: false,
-            code: 'DPDP_CONSENT_VIOLATION_BLOCKED',
-            message: 'Action blocked by Zone Agent: Data Principal has not consented or has withdrawn consent for marketing promotions.',
-            reason: checkReason,
-            agentLatencyMs: latencyMs,
-            statutoryBasis: 'Digital Personal Data Protection Act 2025, Section 6(1)',
-          },
-          403
-        );
-      }
+      // Logical soft delete with access revocation
+      db.prepare(`
+        UPDATE users SET
+          email = 'deleted_' || id || '@quarantine.local',
+          full_name = '[DELETED DATA PRINCIPAL]',
+          phone = '0000000000',
+          street_address = NULL,
+          city = NULL,
+          consent_purposes = '[]'
+        WHERE id = ?
+      `).run(userId);
 
       return json({
         success: true,
-        message: 'Promotional 20% Discount SMS delivered successfully to customer!',
-        agentLatencyMs: latencyMs,
-        noticeVersion: 'v2.1_dpdp2025',
-        timestamp: new Date().toISOString(),
+        userId,
+        status: 'COLD_RETENTION_QUARANTINE',
+        message: 'Account erasure processed. Personal identifiers masked.',
       });
     }
 

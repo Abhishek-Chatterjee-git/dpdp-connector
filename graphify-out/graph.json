@@ -448,28 +448,88 @@
       "source_location": "L54"
     },
     {
-      "id": "sim_enterprise_ecom_app_src_db_ecomdatabase",
-      "label": "EcomDatabase",
+      "id": "sim_enterprise_ecom_app_src_auth_customersession",
+      "label": "CustomerSession",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 13,
       "file_type": "code",
-      "norm_label": "ecomdatabase",
-      "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L6"
+      "norm_label": "customersession",
+      "source_file": "sim-enterprise/ecom-app/src/auth.ts",
+      "source_location": "L17"
     },
     {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver",
-      "label": "EcomServer",
+      "id": "sim_enterprise_ecom_app_src_auth_customeruser",
+      "label": "CustomerUser",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 13,
       "file_type": "code",
-      "norm_label": "ecomserver",
+      "norm_label": "customeruser",
+      "source_file": "sim-enterprise/ecom-app/src/auth.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_employeerecord",
+      "label": "EmployeeRecord",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "employeerecord",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L39"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_orderrecord",
+      "label": "OrderRecord",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "orderrecord",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L29"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_productrecord",
+      "label": "ProductRecord",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "productrecord",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_userrecord",
+      "label": "UserRecord",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "userrecord",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L16"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserverconfig",
+      "label": "EcomServerConfig",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "ecomserverconfig",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L61"
+      "source_location": "L12"
     },
     {
       "id": "agent_src_daemon_zoneagentdaemon",
@@ -489,7 +549,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 19,
+      "community": 20,
       "file_type": "code",
       "norm_label": "agentconfig",
       "source_file": "agent/src/config.ts",
@@ -501,7 +561,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 19,
+      "community": 20,
       "file_type": "code",
       "norm_label": "cachedconsent",
       "source_file": "agent/src/consent/cache.ts",
@@ -513,7 +573,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 19,
+      "community": 20,
       "file_type": "code",
       "norm_label": "scanneroptions",
       "source_file": "agent/src/discovery/scanner.ts",
@@ -525,7 +585,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": "sqliteadapter",
       "source_file": "agent/src/db/connector.ts",
@@ -537,7 +597,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": "databasesync",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -549,7 +609,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": "statementsync",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -561,7 +621,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": "databasesync",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -573,7 +633,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": "statementsync",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -585,7 +645,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": "databasesync",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -597,7 +657,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": "statementsync",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -609,47 +669,23 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": "postgresadapter",
       "source_file": "agent/src/db/connector.ts",
       "source_location": "L149"
     },
     {
-      "id": "sim_enterprise_ecom_app_src_auth_customersession",
-      "label": "CustomerSession",
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver",
+      "label": "EcomServer",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 25,
+      "community": 27,
       "file_type": "code",
-      "norm_label": "customersession",
-      "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L16"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_auth_customeruser",
-      "label": "CustomerUser",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 25,
-      "file_type": "code",
-      "norm_label": "customeruser",
-      "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserverconfig",
-      "label": "EcomServerConfig",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 25,
-      "file_type": "code",
-      "norm_label": "ecomserverconfig",
+      "norm_label": "ecomserver",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L12"
+      "source_location": "L16"
     },
     {
       "id": "agent_src_consent_cache_inmemoryconsentcache",
@@ -657,7 +693,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 27,
+      "community": 28,
       "file_type": "code",
       "norm_label": "inmemoryconsentcache",
       "source_file": "agent/src/consent/cache.ts",
@@ -669,7 +705,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 28,
+      "community": 29,
       "file_type": "code",
       "norm_label": "discoveredendpoint",
       "source_file": "agent/src/discovery/probe.ts",
@@ -681,7 +717,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 28,
+      "community": 29,
       "file_type": "code",
       "norm_label": "networkprobeconfig",
       "source_file": "agent/src/discovery/probe.ts",
@@ -693,11 +729,23 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 28,
+      "community": 29,
       "file_type": "code",
       "norm_label": "networkprobeengine",
       "source_file": "agent/src/discovery/probe.ts",
       "source_location": "L30"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "label": "AdminPortalServer",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": "adminportalserver",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L11"
     },
     {
       "id": "sim_enterprise_ecom_app_src_auth_customerauthservice",
@@ -705,11 +753,23 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 29,
+      "community": 31,
       "file_type": "code",
       "norm_label": "customerauthservice",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L24"
+      "source_location": "L25"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "label": "EnterpriseDatabase",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": "enterprisedatabase",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L50"
     },
     {
       "id": "agent_src_db_connector_databaseadapter",
@@ -1397,160 +1457,6 @@
       "source_location": "L39"
     },
     {
-      "id": "sim_enterprise_ecom_app_src_db_ecomdatabase_close",
-      "label": ".close()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".close()",
-      "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L119"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_db_ecomdatabase_constructor",
-      "label": ".constructor()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".constructor()",
-      "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L10"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_db_ecomdatabase_getdb",
-      "label": ".getDb()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".getdb()",
-      "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L28"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_db_ecomdatabase_init",
-      "label": ".init()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".init()",
-      "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L14"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_db_ecomdatabase_migrateandseed",
-      "label": ".migrateAndSeed()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".migrateandseed()",
-      "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L33"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver_constructor",
-      "label": ".constructor()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".constructor()",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L68"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver_getauthservice",
-      "label": ".getAuthService()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".getauthservice()",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L104"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver_getdb",
-      "label": ".getDb()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".getdb()",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L100"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver_handleapi",
-      "label": ".handleApi()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".handleapi()",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L138"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver_handlerequest",
-      "label": ".handleRequest()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".handlerequest()",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L108"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver_readjsonbody",
-      "label": ".readJsonBody()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".readjsonbody()",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L469"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver_servestaticfile",
-      "label": ".serveStaticFile()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".servestaticfile()",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L434"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver_start",
-      "label": ".start()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".start()",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L79"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_ecomserver_stop",
-      "label": ".stop()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "file_type": "code",
-      "norm_label": ".stop()",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L92"
-    },
-    {
       "id": "agent_src_daemon_zoneagentdaemon_checkddldrift",
       "label": ".checkDdlDrift()",
       "_callable": true,
@@ -1698,7 +1604,7 @@
       "label": "loadAgentConfig()",
       "_callable": true,
       "_origin": "ast",
-      "community": 19,
+      "community": 20,
       "file_type": "code",
       "norm_label": "loadagentconfig()",
       "source_file": "agent/src/config.ts",
@@ -1709,7 +1615,7 @@
       "label": ".close()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".close()",
       "source_file": "agent/src/db/connector.ts",
@@ -1720,7 +1626,7 @@
       "label": ".connect()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".connect()",
       "source_file": "agent/src/db/connector.ts",
@@ -1731,7 +1637,7 @@
       "label": ".constructor()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "agent/src/db/connector.ts",
@@ -1742,7 +1648,7 @@
       "label": ".executeAnonymize()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".executeanonymize()",
       "source_file": "agent/src/db/connector.ts",
@@ -1753,7 +1659,7 @@
       "label": ".executeDelete()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".executedelete()",
       "source_file": "agent/src/db/connector.ts",
@@ -1764,7 +1670,7 @@
       "label": ".getDdlChecksum()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".getddlchecksum()",
       "source_file": "agent/src/db/connector.ts",
@@ -1775,7 +1681,7 @@
       "label": ".getNativeDb()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".getnativedb()",
       "source_file": "agent/src/db/connector.ts",
@@ -1786,7 +1692,7 @@
       "label": ".getTableList()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".gettablelist()",
       "source_file": "agent/src/db/connector.ts",
@@ -1797,7 +1703,7 @@
       "label": ".getTableSchema()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".gettableschema()",
       "source_file": "agent/src/db/connector.ts",
@@ -1808,7 +1714,7 @@
       "label": ".sampleRows()",
       "_callable": true,
       "_origin": "ast",
-      "community": 20,
+      "community": 21,
       "file_type": "code",
       "norm_label": ".samplerows()",
       "source_file": "agent/src/db/connector.ts",
@@ -1819,7 +1725,7 @@
       "label": ".close()",
       "_callable": true,
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": ".close()",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -1830,7 +1736,7 @@
       "label": ".constructor()",
       "_callable": true,
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -1841,7 +1747,7 @@
       "label": ".exec()",
       "_callable": true,
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": ".exec()",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -1852,7 +1758,7 @@
       "label": ".prepare()",
       "_callable": true,
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": ".prepare()",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -1863,7 +1769,7 @@
       "label": ".all()",
       "_callable": true,
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": ".all()",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -1874,7 +1780,7 @@
       "label": ".get()",
       "_callable": true,
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": ".get()",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -1885,7 +1791,7 @@
       "label": ".run()",
       "_callable": true,
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": ".run()",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -1896,7 +1802,7 @@
       "label": ".close()",
       "_callable": true,
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": ".close()",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -1907,7 +1813,7 @@
       "label": ".constructor()",
       "_callable": true,
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -1918,7 +1824,7 @@
       "label": ".exec()",
       "_callable": true,
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": ".exec()",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -1929,7 +1835,7 @@
       "label": ".prepare()",
       "_callable": true,
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": ".prepare()",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -1940,7 +1846,7 @@
       "label": ".all()",
       "_callable": true,
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": ".all()",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -1951,7 +1857,7 @@
       "label": ".get()",
       "_callable": true,
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": ".get()",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -1962,7 +1868,7 @@
       "label": ".run()",
       "_callable": true,
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": ".run()",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -1973,7 +1879,7 @@
       "label": ".close()",
       "_callable": true,
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": ".close()",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -1984,7 +1890,7 @@
       "label": ".constructor()",
       "_callable": true,
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -1995,7 +1901,7 @@
       "label": ".exec()",
       "_callable": true,
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": ".exec()",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -2006,7 +1912,7 @@
       "label": ".prepare()",
       "_callable": true,
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": ".prepare()",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -2017,7 +1923,7 @@
       "label": ".all()",
       "_callable": true,
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": ".all()",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -2028,7 +1934,7 @@
       "label": ".get()",
       "_callable": true,
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": ".get()",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -2039,7 +1945,7 @@
       "label": ".run()",
       "_callable": true,
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": ".run()",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -2050,7 +1956,7 @@
       "label": ".close()",
       "_callable": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": ".close()",
       "source_file": "agent/src/db/connector.ts",
@@ -2061,7 +1967,7 @@
       "label": ".connect()",
       "_callable": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": ".connect()",
       "source_file": "agent/src/db/connector.ts",
@@ -2072,7 +1978,7 @@
       "label": ".constructor()",
       "_callable": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "agent/src/db/connector.ts",
@@ -2083,7 +1989,7 @@
       "label": ".executeAnonymize()",
       "_callable": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": ".executeanonymize()",
       "source_file": "agent/src/db/connector.ts",
@@ -2094,7 +2000,7 @@
       "label": ".executeDelete()",
       "_callable": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": ".executedelete()",
       "source_file": "agent/src/db/connector.ts",
@@ -2105,7 +2011,7 @@
       "label": ".getDdlChecksum()",
       "_callable": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": ".getddlchecksum()",
       "source_file": "agent/src/db/connector.ts",
@@ -2116,7 +2022,7 @@
       "label": ".getTableList()",
       "_callable": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": ".gettablelist()",
       "source_file": "agent/src/db/connector.ts",
@@ -2127,7 +2033,7 @@
       "label": ".getTableSchema()",
       "_callable": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": ".gettableschema()",
       "source_file": "agent/src/db/connector.ts",
@@ -2138,18 +2044,216 @@
       "label": ".sampleRows()",
       "_callable": true,
       "_origin": "ast",
-      "community": 24,
+      "community": 25,
       "file_type": "code",
       "norm_label": ".samplerows()",
       "source_file": "agent/src/db/connector.ts",
       "source_location": "L229"
     },
     {
+      "id": "sim_enterprise_ecom_app_public_admin_app_closeaddproductmodal",
+      "label": "closeAddProductModal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "closeaddproductmodal()",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L225"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_public_admin_app_fetchcustomers",
+      "label": "fetchCustomers()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "fetchcustomers()",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L151"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_public_admin_app_fetchemployees",
+      "label": "fetchEmployees()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "fetchemployees()",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L189"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_public_admin_app_fetchinventory",
+      "label": "fetchInventory()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "fetchinventory()",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L61"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_public_admin_app_fetchorders",
+      "label": "fetchOrders()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "fetchorders()",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L108"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_public_admin_app_openaddproductmodal",
+      "label": "openAddProductModal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "openaddproductmodal()",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L221"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_public_admin_app_submitnewproduct",
+      "label": "submitNewProduct()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "submitnewproduct()",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L229"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_public_admin_app_switchtab",
+      "label": "switchTab()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "switchtab()",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_public_admin_app_updatestockprompt",
+      "label": "updateStockPrompt()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "updatestockprompt()",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L259"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_enterprisedatabase_getdb",
+      "label": ".getDb()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "file_type": "code",
+      "norm_label": ".getdb()",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L308"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver_constructor",
+      "label": ".constructor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "file_type": "code",
+      "norm_label": ".constructor()",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L23"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver_getauthservice",
+      "label": ".getAuthService()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "file_type": "code",
+      "norm_label": ".getauthservice()",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L57"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver_getdb",
+      "label": ".getDb()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "file_type": "code",
+      "norm_label": ".getdb()",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L53"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver_handleapi",
+      "label": ".handleApi()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "file_type": "code",
+      "norm_label": ".handleapi()",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L91"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver_handlerequest",
+      "label": ".handleRequest()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "file_type": "code",
+      "norm_label": ".handlerequest()",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L61"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver_readjsonbody",
+      "label": ".readJsonBody()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "file_type": "code",
+      "norm_label": ".readjsonbody()",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L359"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver_servestaticfile",
+      "label": ".serveStaticFile()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "file_type": "code",
+      "norm_label": ".servestaticfile()",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L324"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver_start",
+      "label": ".start()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "file_type": "code",
+      "norm_label": ".start()",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L32"
+    },
+    {
       "id": "agent_src_consent_cache_inmemoryconsentcache_check",
       "label": ".check()",
       "_callable": true,
       "_origin": "ast",
-      "community": 27,
+      "community": 28,
       "file_type": "code",
       "norm_label": ".check()",
       "source_file": "agent/src/consent/cache.ts",
@@ -2160,7 +2264,7 @@
       "label": ".clear()",
       "_callable": true,
       "_origin": "ast",
-      "community": 27,
+      "community": 28,
       "file_type": "code",
       "norm_label": ".clear()",
       "source_file": "agent/src/consent/cache.ts",
@@ -2171,7 +2275,7 @@
       "label": ".constructor()",
       "_callable": true,
       "_origin": "ast",
-      "community": 27,
+      "community": 28,
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "agent/src/consent/cache.ts",
@@ -2182,7 +2286,7 @@
       "label": ".getStats()",
       "_callable": true,
       "_origin": "ast",
-      "community": 27,
+      "community": 28,
       "file_type": "code",
       "norm_label": ".getstats()",
       "source_file": "agent/src/consent/cache.ts",
@@ -2193,7 +2297,7 @@
       "label": ".invalidate()",
       "_callable": true,
       "_origin": "ast",
-      "community": 27,
+      "community": 28,
       "file_type": "code",
       "norm_label": ".invalidate()",
       "source_file": "agent/src/consent/cache.ts",
@@ -2204,7 +2308,7 @@
       "label": ".set()",
       "_callable": true,
       "_origin": "ast",
-      "community": 27,
+      "community": 28,
       "file_type": "code",
       "norm_label": ".set()",
       "source_file": "agent/src/consent/cache.ts",
@@ -2215,7 +2319,7 @@
       "label": ".getConsentCache()",
       "_callable": true,
       "_origin": "ast",
-      "community": 27,
+      "community": 28,
       "file_type": "code",
       "norm_label": ".getconsentcache()",
       "source_file": "agent/src/daemon.ts",
@@ -2226,7 +2330,7 @@
       "label": ".constructor()",
       "_callable": true,
       "_origin": "ast",
-      "community": 28,
+      "community": 29,
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "agent/src/discovery/probe.ts",
@@ -2237,7 +2341,7 @@
       "label": ".probeEndpoint()",
       "_callable": true,
       "_origin": "ast",
-      "community": 28,
+      "community": 29,
       "file_type": "code",
       "norm_label": ".probeendpoint()",
       "source_file": "agent/src/discovery/probe.ts",
@@ -2248,88 +2352,242 @@
       "label": ".scanNetwork()",
       "_callable": true,
       "_origin": "ast",
-      "community": 28,
+      "community": 29,
       "file_type": "code",
       "norm_label": ".scannetwork()",
       "source_file": "agent/src/discovery/probe.ts",
       "source_location": "L90"
     },
     {
+      "id": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_constructor",
+      "label": ".constructor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": ".constructor()",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handleapi",
+      "label": ".handleApi()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": ".handleapi()",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L72"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handlerequest",
+      "label": ".handleRequest()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": ".handlerequest()",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L43"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_readjsonbody",
+      "label": ".readJsonBody()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": ".readjsonbody()",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L227"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_servestaticfile",
+      "label": ".serveStaticFile()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": ".servestaticfile()",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L197"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_start",
+      "label": ".start()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": ".start()",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L24"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_stop",
+      "label": ".stop()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": ".stop()",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L36"
+    },
+    {
       "id": "sim_enterprise_ecom_app_src_auth_customerauthservice_constructor",
       "label": ".constructor()",
       "_callable": true,
       "_origin": "ast",
-      "community": 29,
+      "community": 31,
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L28"
+      "source_location": "L29"
     },
     {
       "id": "sim_enterprise_ecom_app_src_auth_customerauthservice_hashpassword",
       "label": ".hashPassword()",
       "_callable": true,
       "_origin": "ast",
-      "community": 29,
+      "community": 31,
       "file_type": "code",
       "norm_label": ".hashpassword()",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L60"
+      "source_location": "L46"
     },
     {
       "id": "sim_enterprise_ecom_app_src_auth_customerauthservice_inittables",
       "label": ".initTables()",
       "_callable": true,
       "_origin": "ast",
-      "community": 29,
+      "community": 31,
       "file_type": "code",
       "norm_label": ".inittables()",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L33"
+      "source_location": "L34"
     },
     {
       "id": "sim_enterprise_ecom_app_src_auth_customerauthservice_login",
       "label": ".login()",
       "_callable": true,
       "_origin": "ast",
-      "community": 29,
+      "community": 31,
       "file_type": "code",
       "norm_label": ".login()",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L79"
+      "source_location": "L65"
     },
     {
       "id": "sim_enterprise_ecom_app_src_auth_customerauthservice_logout",
       "label": ".logout()",
       "_callable": true,
       "_origin": "ast",
-      "community": 29,
+      "community": 31,
       "file_type": "code",
       "norm_label": ".logout()",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L139"
+      "source_location": "L132"
     },
     {
       "id": "sim_enterprise_ecom_app_src_auth_customerauthservice_setpassword",
       "label": ".setPassword()",
       "_callable": true,
       "_origin": "ast",
-      "community": 29,
+      "community": 31,
       "file_type": "code",
       "norm_label": ".setpassword()",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L64"
+      "source_location": "L50"
     },
     {
       "id": "sim_enterprise_ecom_app_src_auth_customerauthservice_verifysession",
       "label": ".verifySession()",
       "_callable": true,
       "_origin": "ast",
-      "community": 29,
+      "community": 31,
       "file_type": "code",
       "norm_label": ".verifysession()",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L128"
+      "source_location": "L121"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_enterprisedatabase_close",
+      "label": ".close()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": ".close()",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L313"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_enterprisedatabase_constructor",
+      "label": ".constructor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": ".constructor()",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L56"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_enterprisedatabase_init",
+      "label": ".init()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": ".init()",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L65"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_enterprisedatabase_initpostgres",
+      "label": ".initPostgres()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": ".initpostgres()",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L163"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_enterprisedatabase_initsqlite",
+      "label": ".initSqlite()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": ".initsqlite()",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L76"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db_enterprisedatabase_seedinitialproductsandadmin",
+      "label": ".seedInitialProductsAndAdmin()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": ".seedinitialproductsandadmin()",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L227"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_ecomserver_stop",
+      "label": ".stop()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": ".stop()",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L45"
     },
     {
       "id": "control_plane_public_app_closedsrmodal",
@@ -2560,7 +2818,18 @@
       "file_type": "code",
       "norm_label": "addtocart()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L69"
+      "source_location": "L70"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_public_app_checkexistingsession",
+      "label": "checkExistingSession()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "file_type": "code",
+      "norm_label": "checkexistingsession()",
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L285"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_checkoutcart",
@@ -2571,7 +2840,7 @@
       "file_type": "code",
       "norm_label": "checkoutcart()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L133"
+      "source_location": "L134"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_closeloginmodal",
@@ -2582,7 +2851,7 @@
       "file_type": "code",
       "norm_label": "closeloginmodal()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L178"
+      "source_location": "L188"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_closesignupmodal",
@@ -2593,7 +2862,7 @@
       "file_type": "code",
       "norm_label": "closesignupmodal()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L170"
+      "source_location": "L180"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_fetchcatalog",
@@ -2604,7 +2873,7 @@
       "file_type": "code",
       "norm_label": "fetchcatalog()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L17"
+      "source_location": "L8"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_logoutcustomer",
@@ -2615,7 +2884,7 @@
       "file_type": "code",
       "norm_label": "logoutcustomer()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L254"
+      "source_location": "L277"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_onuserloggedin",
@@ -2626,7 +2895,7 @@
       "file_type": "code",
       "norm_label": "onuserloggedin()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L247"
+      "source_location": "L270"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_openloginmodal",
@@ -2637,7 +2906,7 @@
       "file_type": "code",
       "norm_label": "openloginmodal()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L174"
+      "source_location": "L184"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_opensignupmodal",
@@ -2648,7 +2917,7 @@
       "file_type": "code",
       "norm_label": "opensignupmodal()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L166"
+      "source_location": "L176"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_removefromcart",
@@ -2659,7 +2928,7 @@
       "file_type": "code",
       "norm_label": "removefromcart()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L84"
+      "source_location": "L85"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_rendercart",
@@ -2670,7 +2939,7 @@
       "file_type": "code",
       "norm_label": "rendercart()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L96"
+      "source_location": "L97"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_rendercatalog",
@@ -2681,7 +2950,7 @@
       "file_type": "code",
       "norm_label": "rendercatalog()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L30"
+      "source_location": "L24"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_submitlogin",
@@ -2692,7 +2961,7 @@
       "file_type": "code",
       "norm_label": "submitlogin()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L183"
+      "source_location": "L239"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_submitsignup",
@@ -2703,7 +2972,7 @@
       "file_type": "code",
       "norm_label": "submitsignup()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L210"
+      "source_location": "L192"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_togglecartdrawer",
@@ -2714,18 +2983,7 @@
       "file_type": "code",
       "norm_label": "togglecartdrawer()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L63"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_public_app_triggermarketingsms",
-      "label": "triggerMarketingSms()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "file_type": "code",
-      "norm_label": "triggermarketingsms()",
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L260"
+      "source_location": "L64"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_updatecartbadge",
@@ -2736,7 +2994,7 @@
       "file_type": "code",
       "norm_label": "updatecartbadge()",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L90"
+      "source_location": "L91"
     },
     {
       "id": "agent_src_daemon_zoneagentdaemon_constructor",
@@ -3795,6 +4053,96 @@
       "source_location": "L105"
     },
     {
+      "id": "sim_enterprise_ecom_app_src_admin_server",
+      "label": "admin-server.ts",
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "admin-server.ts",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_admin_server_dirname",
+      "label": "__dirname",
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "__dirname",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L9"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_admin_server_filename",
+      "label": "__filename",
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "__filename",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L8"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_auth",
+      "label": "auth.ts",
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "auth.ts",
+      "source_file": "sim-enterprise/ecom-app/src/auth.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_db",
+      "label": "src/db.ts",
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "src/db.ts",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_index",
+      "label": "ecom-app/src/index.ts",
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "ecom-app/src/index.ts",
+      "source_file": "sim-enterprise/ecom-app/src/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server",
+      "label": "ecom-app/src/server.ts",
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "ecom-app/src/server.ts",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_dirname",
+      "label": "__dirname",
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "__dirname",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L10"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_server_filename",
+      "label": "__filename",
+      "_origin": "ast",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "__filename",
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L9"
+    },
+    {
       "id": "agent_tsconfig",
       "label": "agent/tsconfig.json",
       "_origin": "ast",
@@ -4355,74 +4703,124 @@
       "source_location": "L14"
     },
     {
-      "id": "agent_src_config",
-      "label": "config.ts",
+      "id": "sim_enterprise_ecom_app_src_test",
+      "label": "ecom-app/src/test.ts",
       "_origin": "ast",
       "community": 19,
       "file_type": "code",
-      "norm_label": "config.ts",
-      "source_file": "agent/src/config.ts",
+      "norm_label": "ecom-app/src/test.ts",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
       "source_location": "L1"
     },
     {
-      "id": "agent_src_consent_cache",
-      "label": "cache.ts",
+      "id": "sim_enterprise_ecom_app_src_test_adminordersdata",
+      "label": "adminOrdersData",
       "_origin": "ast",
       "community": 19,
       "file_type": "code",
-      "norm_label": "cache.ts",
-      "source_file": "agent/src/consent/cache.ts",
-      "source_location": "L1"
+      "norm_label": "adminordersdata",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L92"
     },
     {
-      "id": "agent_src_daemon",
-      "label": "daemon.ts",
+      "id": "sim_enterprise_ecom_app_src_test_adminserver",
+      "label": "adminServer",
       "_origin": "ast",
       "community": 19,
       "file_type": "code",
-      "norm_label": "daemon.ts",
-      "source_file": "agent/src/daemon.ts",
-      "source_location": "L1"
+      "norm_label": "adminserver",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L13"
     },
     {
-      "id": "agent_src_db_connector",
-      "label": "connector.ts",
+      "id": "sim_enterprise_ecom_app_src_test_catdata",
+      "label": "catData",
       "_origin": "ast",
       "community": 19,
       "file_type": "code",
-      "norm_label": "connector.ts",
-      "source_file": "agent/src/db/connector.ts",
-      "source_location": "L1"
+      "norm_label": "catdata",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L22"
     },
     {
-      "id": "agent_src_discovery_scanner",
-      "label": "scanner.ts",
+      "id": "sim_enterprise_ecom_app_src_test_catdata2",
+      "label": "catData2",
       "_origin": "ast",
       "community": 19,
       "file_type": "code",
-      "norm_label": "scanner.ts",
-      "source_file": "agent/src/discovery/scanner.ts",
-      "source_location": "L1"
+      "norm_label": "catdata2",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L85"
     },
     {
-      "id": "agent_src_dsr_executor",
-      "label": "executor.ts",
+      "id": "sim_enterprise_ecom_app_src_test_db",
+      "label": "db",
       "_origin": "ast",
       "community": 19,
       "file_type": "code",
-      "norm_label": "executor.ts",
-      "source_file": "agent/src/dsr/executor.ts",
-      "source_location": "L1"
+      "norm_label": "db",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L10"
     },
     {
-      "id": "agent_src_index",
-      "label": "agent/src/index.ts",
+      "id": "sim_enterprise_ecom_app_src_test_ecomserver",
+      "label": "ecomServer",
       "_origin": "ast",
       "community": 19,
       "file_type": "code",
-      "norm_label": "agent/src/index.ts",
-      "source_file": "agent/src/index.ts",
-      "source_location": "L1"
+      "norm_label": "ecomserver",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L12"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_test_erasuredata",
+      "label": "erasureData",
+      "_origin": "ast",
+      "community": 19,
+      "file_type": "code",
+      "norm_label": "erasuredata",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L128"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_test_exportdata",
+      "label": "exportData",
+      "_origin": "ast",
+      "community": 19,
+      "file_type": "code",
+      "norm_label": "exportdata",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L116"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_test_logindata",
+      "label": "loginData",
+      "_origin": "ast",
+      "community": 19,
+      "file_type": "code",
+      "norm_label": "logindata",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L62"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_test_orderdata",
+      "label": "orderData",
+      "_origin": "ast",
+      "community": 19,
+      "file_type": "code",
+      "norm_label": "orderdata",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L79"
+    },
+    {
+      "id": "sim_enterprise_ecom_app_src_test_signupdata",
+      "label": "signupData",
+      "_origin": "ast",
+      "community": 19,
+      "file_type": "code",
+      "norm_label": "signupdata",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L43"
     },
     {
       "id": "agent_package",
@@ -4675,10 +5073,80 @@
       "source_location": "L19"
     },
     {
+      "id": "agent_src_config",
+      "label": "config.ts",
+      "_origin": "ast",
+      "community": 20,
+      "file_type": "code",
+      "norm_label": "config.ts",
+      "source_file": "agent/src/config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "agent_src_consent_cache",
+      "label": "cache.ts",
+      "_origin": "ast",
+      "community": 20,
+      "file_type": "code",
+      "norm_label": "cache.ts",
+      "source_file": "agent/src/consent/cache.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "agent_src_daemon",
+      "label": "daemon.ts",
+      "_origin": "ast",
+      "community": 20,
+      "file_type": "code",
+      "norm_label": "daemon.ts",
+      "source_file": "agent/src/daemon.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "agent_src_db_connector",
+      "label": "connector.ts",
+      "_origin": "ast",
+      "community": 20,
+      "file_type": "code",
+      "norm_label": "connector.ts",
+      "source_file": "agent/src/db/connector.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "agent_src_discovery_scanner",
+      "label": "scanner.ts",
+      "_origin": "ast",
+      "community": 20,
+      "file_type": "code",
+      "norm_label": "scanner.ts",
+      "source_file": "agent/src/discovery/scanner.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "agent_src_dsr_executor",
+      "label": "executor.ts",
+      "_origin": "ast",
+      "community": 20,
+      "file_type": "code",
+      "norm_label": "executor.ts",
+      "source_file": "agent/src/dsr/executor.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "agent_src_index",
+      "label": "agent/src/index.ts",
+      "_origin": "ast",
+      "community": 20,
+      "file_type": "code",
+      "norm_label": "agent/src/index.ts",
+      "source_file": "agent/src/index.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "agent_src_sqlite_shim_d",
       "label": "agent/src/sqlite-shim.d.ts",
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": "agent/src/sqlite-shim.d.ts",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -4688,7 +5156,7 @@
       "id": "agent_src_sqlite_shim_d_node_sqlite",
       "label": "node:sqlite",
       "_origin": "ast",
-      "community": 21,
+      "community": 22,
       "file_type": "code",
       "norm_label": "node:sqlite",
       "source_file": "agent/src/sqlite-shim.d.ts",
@@ -4698,7 +5166,7 @@
       "id": "control_plane_src_sqlite_shim_d",
       "label": "control-plane/src/sqlite-shim.d.ts",
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": "control-plane/src/sqlite-shim.d.ts",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -4708,7 +5176,7 @@
       "id": "control_plane_src_sqlite_shim_d_node_sqlite",
       "label": "node:sqlite",
       "_origin": "ast",
-      "community": 22,
+      "community": 23,
       "file_type": "code",
       "norm_label": "node:sqlite",
       "source_file": "control-plane/src/sqlite-shim.d.ts",
@@ -4718,7 +5186,7 @@
       "id": "sim_enterprise_ecom_app_src_sqlite_shim_d",
       "label": "ecom-app/src/sqlite-shim.d.ts",
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": "ecom-app/src/sqlite-shim.d.ts",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
@@ -4728,187 +5196,27 @@
       "id": "sim_enterprise_ecom_app_src_sqlite_shim_d_node_sqlite",
       "label": "node:sqlite",
       "_origin": "ast",
-      "community": 23,
+      "community": 24,
       "file_type": "code",
       "norm_label": "node:sqlite",
       "source_file": "sim-enterprise/ecom-app/src/sqlite-shim.d.ts",
       "source_location": "L1"
     },
     {
-      "id": "sim_enterprise_ecom_app_src_auth",
-      "label": "auth.ts",
+      "id": "sim_enterprise_ecom_app_public_admin_app",
+      "label": "public-admin/app.js",
       "_origin": "ast",
-      "community": 25,
+      "community": 26,
       "file_type": "code",
-      "norm_label": "auth.ts",
-      "source_file": "sim-enterprise/ecom-app/src/auth.ts",
+      "norm_label": "public-admin/app.js",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
       "source_location": "L1"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_db",
-      "label": "src/db.ts",
-      "_origin": "ast",
-      "community": 25,
-      "file_type": "code",
-      "norm_label": "src/db.ts",
-      "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_index",
-      "label": "ecom-app/src/index.ts",
-      "_origin": "ast",
-      "community": 25,
-      "file_type": "code",
-      "norm_label": "ecom-app/src/index.ts",
-      "source_file": "sim-enterprise/ecom-app/src/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server",
-      "label": "ecom-app/src/server.ts",
-      "_origin": "ast",
-      "community": 25,
-      "file_type": "code",
-      "norm_label": "ecom-app/src/server.ts",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_dirname",
-      "label": "__dirname",
-      "_origin": "ast",
-      "community": 25,
-      "file_type": "code",
-      "norm_label": "__dirname",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L10"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_filename",
-      "label": "__filename",
-      "_origin": "ast",
-      "community": 25,
-      "file_type": "code",
-      "norm_label": "__filename",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L9"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_server_store_catalog",
-      "label": "STORE_CATALOG",
-      "_origin": "ast",
-      "community": 25,
-      "file_type": "code",
-      "norm_label": "store_catalog",
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L18"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test",
-      "label": "ecom-app/src/test.ts",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "ecom-app/src/test.ts",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test_catdata",
-      "label": "catData",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "catdata",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L64"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test_db",
-      "label": "db",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "db",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L8"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test_exportdata",
-      "label": "exportData",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "exportdata",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L88"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test_logindata",
-      "label": "loginData",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "logindata",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L29"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test_orderdata",
-      "label": "orderData",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "orderdata",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L80"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test_priyauser",
-      "label": "priyaUser",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "priyauser",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L56"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test_promodata",
-      "label": "promoData",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "promodata",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L103"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test_server",
-      "label": "server",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "server",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L9"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_src_test_signupdata",
-      "label": "signupData",
-      "_origin": "ast",
-      "community": 26,
-      "file_type": "code",
-      "norm_label": "signupdata",
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L51"
     },
     {
       "id": "agent_src_discovery_probe",
       "label": "probe.ts",
       "_origin": "ast",
-      "community": 28,
+      "community": 29,
       "file_type": "code",
       "norm_label": "probe.ts",
       "source_file": "agent/src/discovery/probe.ts",
@@ -4918,7 +5226,7 @@
       "id": "agent_src_discovery_probe_default_port_map",
       "label": "DEFAULT_PORT_MAP",
       "_origin": "ast",
-      "community": 28,
+      "community": 29,
       "file_type": "code",
       "norm_label": "default_port_map",
       "source_file": "agent/src/discovery/probe.ts",
@@ -5822,7 +6130,7 @@
       "file_type": "code",
       "norm_label": "cart",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L10"
+      "source_location": "L4"
     },
     {
       "id": "sim_enterprise_ecom_app_public_app_catalogproducts",
@@ -5832,17 +6140,7 @@
       "file_type": "code",
       "norm_label": "catalogproducts",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L14"
-    },
-    {
-      "id": "sim_enterprise_ecom_app_public_app_currentuser",
-      "label": "currentUser",
-      "_origin": "ast",
-      "community": 8,
-      "file_type": "code",
-      "norm_label": "currentuser",
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L3"
+      "source_location": "L5"
     }
   ],
   "links": [
@@ -6627,20 +6925,92 @@
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_public_app_addtocart",
-      "target": "sim_enterprise_ecom_app_public_app_updatecartbadge",
+      "source": "sim_enterprise_ecom_app_public_admin_app_submitnewproduct",
+      "target": "sim_enterprise_ecom_app_public_admin_app_closeaddproductmodal",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L80",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L250",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app_submitnewproduct",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchinventory",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L251",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app_switchtab",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchinventory",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app_switchtab",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchorders",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app_switchtab",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchcustomers",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app_switchtab",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchemployees",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app_updatestockprompt",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchinventory",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L269",
       "weight": 1.0
     },
     {
       "source": "sim_enterprise_ecom_app_public_app_addtocart",
-      "target": "sim_enterprise_ecom_app_public_app_togglecartdrawer",
+      "target": "sim_enterprise_ecom_app_public_app_updatecartbadge",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6651,6 +7021,42 @@
       "weight": 1.0
     },
     {
+      "source": "sim_enterprise_ecom_app_public_app_addtocart",
+      "target": "sim_enterprise_ecom_app_public_app_togglecartdrawer",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_app_checkexistingsession",
+      "target": "sim_enterprise_ecom_app_public_app_onuserloggedin",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L290",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_app_checkoutcart",
+      "target": "sim_enterprise_ecom_app_public_app_openloginmodal",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L137",
+      "weight": 1.0
+    },
+    {
       "source": "sim_enterprise_ecom_app_public_app_checkoutcart",
       "target": "sim_enterprise_ecom_app_public_app_updatecartbadge",
       "relation": "calls",
@@ -6659,7 +7065,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L156",
+      "source_location": "L163",
       "weight": 1.0
     },
     {
@@ -6671,7 +7077,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L157",
+      "source_location": "L164",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_app_checkoutcart",
+      "target": "sim_enterprise_ecom_app_public_app_fetchcatalog",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L165",
       "weight": 1.0
     },
     {
@@ -6683,7 +7101,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L23",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -6695,7 +7113,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L86",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -6707,7 +7125,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L87",
+      "source_location": "L88",
       "weight": 1.0
     },
     {
@@ -6719,7 +7137,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L198",
+      "source_location": "L260",
       "weight": 1.0
     },
     {
@@ -6731,7 +7149,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L199",
+      "source_location": "L261",
       "weight": 1.0
     },
     {
@@ -6743,7 +7161,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L238",
+      "source_location": "L228",
       "weight": 1.0
     },
     {
@@ -6755,7 +7173,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L239",
+      "source_location": "L229",
       "weight": 1.0
     },
     {
@@ -6767,7 +7185,55 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L66",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handleapi",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_readjsonbody",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handlerequest",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handleapi",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handlerequest",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_servestaticfile",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_start",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handlerequest",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -6779,19 +7245,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L30",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_auth_customerauthservice_inittables",
-      "target": "sim_enterprise_ecom_app_src_auth_customerauthservice_hashpassword",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L51",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -6803,7 +7257,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L95",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -6815,19 +7269,55 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L66",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_src_db_ecomdatabase_init",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_migrateandseed",
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase_init",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_initpostgres",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L24",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase_init",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_initsqlite",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase_initpostgres",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_seedinitialproductsandadmin",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L224",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase_initsqlite",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_seedinitialproductsandadmin",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L160",
       "weight": 1.0
     },
     {
@@ -6839,7 +7329,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L160",
+      "source_location": "L114",
       "weight": 1.0
     },
     {
@@ -6851,7 +7341,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L126",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -6863,7 +7353,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L130",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -6875,7 +7365,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L81",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -6887,7 +7377,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L84",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -7139,7 +7629,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "sim-enterprise/ecom-app/src/index.ts",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -7151,7 +7641,31 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "sim-enterprise/ecom-app/src/index.ts",
-      "source_location": "L4",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_index",
+      "target": "sim_enterprise_ecom_app_src_admin_server",
+      "relation": "re_exports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "export",
+      "source_file": "sim-enterprise/ecom-app/src/index.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_index",
+      "target": "sim_enterprise_ecom_app_src_auth",
+      "relation": "re_exports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "export",
+      "source_file": "sim-enterprise/ecom-app/src/index.ts",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -7563,15 +8077,27 @@
       "weight": 1.0
     },
     {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
       "source": "sim_enterprise_ecom_app_src_server_ecomserver",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "field",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L63",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -7583,7 +8109,7 @@
       "confidence_score": 1.0,
       "context": "field",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L64",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -8440,18 +8966,6 @@
     },
     {
       "source": "scripts_demo_e2e",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "scripts/demo-e2e.ts",
-      "source_location": "L4",
-      "weight": 1.0
-    },
-    {
-      "source": "scripts_demo_e2e",
       "target": "sim_enterprise_ecom_app_src_server_ecomserver",
       "relation": "imports",
       "_origin": "ast",
@@ -8751,20 +9265,20 @@
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_src_index",
-      "target": "sim_enterprise_ecom_app_src_server_ecomserver",
+      "source": "sim_enterprise_ecom_app_src_admin_server",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "sim-enterprise/ecom-app/src/index.ts",
-      "source_location": "L1",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
       "source": "sim_enterprise_ecom_app_src_server",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8788,7 +9302,7 @@
     },
     {
       "source": "sim_enterprise_ecom_app_src_test",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8808,6 +9322,18 @@
       "context": "import",
       "source_file": "sim-enterprise/ecom-app/src/test.ts",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -9399,6 +9925,18 @@
       "weight": 1.0
     },
     {
+      "source": "sim_enterprise_ecom_app_src_admin_server",
+      "target": "sim_enterprise_ecom_app_src_db",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
       "source": "sim_enterprise_ecom_app_src_server",
       "target": "sim_enterprise_ecom_app_src_db",
       "relation": "imports_from",
@@ -9444,6 +9982,18 @@
       "context": "import",
       "source_file": "sim-enterprise/ecom-app/src/test.ts",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_admin_server",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -9723,15 +10273,75 @@
       "weight": 1.0
     },
     {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_constructor",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
       "source": "sim_enterprise_ecom_app_src_server_ecomserver_constructor",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L68",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_index",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "relation": "re_exports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "re-export",
+      "source_file": "sim-enterprise/ecom-app/src/index.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_index",
+      "target": "sim_enterprise_ecom_app_src_server_ecomserver",
+      "relation": "re_exports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "re-export",
+      "source_file": "sim-enterprise/ecom-app/src/index.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_index",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "relation": "re_exports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "re-export",
+      "source_file": "sim-enterprise/ecom-app/src/index.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_index",
+      "target": "sim_enterprise_ecom_app_src_auth_customerauthservice",
+      "relation": "re_exports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "re-export",
+      "source_file": "sim-enterprise/ecom-app/src/index.ts",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -12853,14 +13463,102 @@
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_public_app",
-      "target": "sim_enterprise_ecom_app_public_app_cart",
+      "source": "sim_enterprise_ecom_app_public_admin_app",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchorders",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L10",
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchcustomers",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L151",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchemployees",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L189",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app",
+      "target": "sim_enterprise_ecom_app_public_admin_app_openaddproductmodal",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L221",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app",
+      "target": "sim_enterprise_ecom_app_public_admin_app_closeaddproductmodal",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L225",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app",
+      "target": "sim_enterprise_ecom_app_public_admin_app_submitnewproduct",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L229",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app",
+      "target": "sim_enterprise_ecom_app_public_admin_app_updatestockprompt",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L259",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app",
+      "target": "sim_enterprise_ecom_app_public_admin_app_switchtab",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_admin_app",
+      "target": "sim_enterprise_ecom_app_public_admin_app_fetchinventory",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public-admin/app.js",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -12871,18 +13569,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L133",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_public_app",
-      "target": "sim_enterprise_ecom_app_public_app_catalogproducts",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L14",
+      "source_location": "L134",
       "weight": 1.0
     },
     {
@@ -12893,18 +13580,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L166",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_public_app",
-      "target": "sim_enterprise_ecom_app_public_app_fetchcatalog",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L17",
+      "source_location": "L176",
       "weight": 1.0
     },
     {
@@ -12915,7 +13591,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L170",
+      "source_location": "L180",
       "weight": 1.0
     },
     {
@@ -12926,7 +13602,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L174",
+      "source_location": "L184",
       "weight": 1.0
     },
     {
@@ -12937,18 +13613,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L178",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_public_app",
-      "target": "sim_enterprise_ecom_app_public_app_submitlogin",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L183",
+      "source_location": "L188",
       "weight": 1.0
     },
     {
@@ -12959,51 +13624,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L210",
+      "source_location": "L192",
       "weight": 1.0
     },
     {
       "source": "sim_enterprise_ecom_app_public_app",
-      "target": "sim_enterprise_ecom_app_public_app_onuserloggedin",
+      "target": "sim_enterprise_ecom_app_public_app_submitlogin",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L247",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_public_app",
-      "target": "sim_enterprise_ecom_app_public_app_logoutcustomer",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L254",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_public_app",
-      "target": "sim_enterprise_ecom_app_public_app_triggermarketingsms",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L260",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_public_app",
-      "target": "sim_enterprise_ecom_app_public_app_currentuser",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L3",
+      "source_location": "L239",
       "weight": 1.0
     },
     {
@@ -13014,7 +13646,62 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L30",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_app",
+      "target": "sim_enterprise_ecom_app_public_app_onuserloggedin",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L270",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_app",
+      "target": "sim_enterprise_ecom_app_public_app_logoutcustomer",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L277",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_app",
+      "target": "sim_enterprise_ecom_app_public_app_checkexistingsession",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L285",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_app",
+      "target": "sim_enterprise_ecom_app_public_app_cart",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_app",
+      "target": "sim_enterprise_ecom_app_public_app_catalogproducts",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -13025,7 +13712,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -13036,7 +13723,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L69",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_public_app",
+      "target": "sim_enterprise_ecom_app_public_app_fetchcatalog",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/public/app.js",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -13047,7 +13745,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L84",
+      "source_location": "L85",
       "weight": 1.0
     },
     {
@@ -13058,7 +13756,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L90",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -13069,7 +13767,40 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/public/app.js",
-      "source_location": "L96",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server",
+      "target": "sim_enterprise_ecom_app_src_admin_server_filename",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server",
+      "target": "sim_enterprise_ecom_app_src_admin_server_dirname",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -13080,7 +13811,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -13091,7 +13822,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -13107,13 +13838,57 @@
     },
     {
       "source": "sim_enterprise_ecom_app_src_db",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase",
+      "target": "sim_enterprise_ecom_app_src_db_userrecord",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L6",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_db",
+      "target": "sim_enterprise_ecom_app_src_db_orderrecord",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_db",
+      "target": "sim_enterprise_ecom_app_src_db_employeerecord",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_db",
+      "target": "sim_enterprise_ecom_app_src_db_productrecord",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_db",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -13140,24 +13915,13 @@
     },
     {
       "source": "sim_enterprise_ecom_app_src_server",
-      "target": "sim_enterprise_ecom_app_src_server_store_catalog",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L18",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_server",
       "target": "sim_enterprise_ecom_app_src_server_ecomserver",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L61",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -13206,79 +13970,13 @@
     },
     {
       "source": "sim_enterprise_ecom_app_src_test",
-      "target": "sim_enterprise_ecom_app_src_test_promodata",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L103",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_test",
-      "target": "sim_enterprise_ecom_app_src_test_logindata",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L29",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_test",
-      "target": "sim_enterprise_ecom_app_src_test_signupdata",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L51",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_test",
-      "target": "sim_enterprise_ecom_app_src_test_priyauser",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L56",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_test",
-      "target": "sim_enterprise_ecom_app_src_test_catdata",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L64",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_test",
       "target": "sim_enterprise_ecom_app_src_test_db",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L8",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_test",
-      "target": "sim_enterprise_ecom_app_src_test_orderdata",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L80",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -13289,18 +13987,106 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L88",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
       "source": "sim_enterprise_ecom_app_src_test",
-      "target": "sim_enterprise_ecom_app_src_test_server",
+      "target": "sim_enterprise_ecom_app_src_test_ecomserver",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/test.ts",
-      "source_location": "L9",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_test_erasuredata",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_test_adminserver",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_test_catdata",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_test_signupdata",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_test_logindata",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_test_orderdata",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_test_catdata2",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_test",
+      "target": "sim_enterprise_ecom_app_src_test_adminordersdata",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/test.ts",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -14734,6 +15520,83 @@
       "weight": 1.0
     },
     {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_constructor",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_servestaticfile",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L197",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_readjsonbody",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L227",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_start",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_stop",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handlerequest",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver",
+      "target": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handleapi",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
       "source": "sim_enterprise_ecom_app_src_auth_customerauthservice",
       "target": "sim_enterprise_ecom_app_src_auth_customerauthservice_verifysession",
       "relation": "method",
@@ -14741,7 +15604,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L128",
+      "source_location": "L121",
       "weight": 1.0
     },
     {
@@ -14752,7 +15615,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L139",
+      "source_location": "L132",
       "weight": 1.0
     },
     {
@@ -14763,7 +15626,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -14774,7 +15637,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -14785,7 +15648,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L60",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -14796,7 +15659,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L64",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -14807,128 +15670,84 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/auth.ts",
-      "source_location": "L79",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_src_db_ecomdatabase",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_constructor",
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_initpostgres",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L10",
+      "source_location": "L163",
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_src_db_ecomdatabase",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_close",
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_seedinitialproductsandadmin",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L119",
+      "source_location": "L227",
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_src_db_ecomdatabase",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_init",
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_getdb",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L14",
+      "source_location": "L308",
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_src_db_ecomdatabase",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_getdb",
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_close",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L28",
+      "source_location": "L313",
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_src_db_ecomdatabase",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_migrateandseed",
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_constructor",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/db.ts",
-      "source_location": "L33",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
-      "target": "sim_enterprise_ecom_app_src_server_ecomserver_getdb",
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_init",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L100",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
-      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
-      "target": "sim_enterprise_ecom_app_src_server_ecomserver_getauthservice",
+      "source": "sim_enterprise_ecom_app_src_db_enterprisedatabase",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_initsqlite",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L104",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
-      "target": "sim_enterprise_ecom_app_src_server_ecomserver_handlerequest",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L108",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
-      "target": "sim_enterprise_ecom_app_src_server_ecomserver_handleapi",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L138",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
-      "target": "sim_enterprise_ecom_app_src_server_ecomserver_servestaticfile",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L434",
-      "weight": 1.0
-    },
-    {
-      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
-      "target": "sim_enterprise_ecom_app_src_server_ecomserver_readjsonbody",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L469",
+      "source_file": "sim-enterprise/ecom-app/src/db.ts",
+      "source_location": "L76",
       "weight": 1.0
     },
     {
@@ -14939,7 +15758,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L68",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -14950,7 +15769,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L79",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
+      "target": "sim_enterprise_ecom_app_src_server_ecomserver_servestaticfile",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L324",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
+      "target": "sim_enterprise_ecom_app_src_server_ecomserver_readjsonbody",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L359",
       "weight": 1.0
     },
     {
@@ -14961,7 +15802,51 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L92",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
+      "target": "sim_enterprise_ecom_app_src_server_ecomserver_getdb",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
+      "target": "sim_enterprise_ecom_app_src_server_ecomserver_getauthservice",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
+      "target": "sim_enterprise_ecom_app_src_server_ecomserver_handlerequest",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_server_ecomserver",
+      "target": "sim_enterprise_ecom_app_src_server_ecomserver_handleapi",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sim-enterprise/ecom-app/src/server.ts",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -15618,51 +16503,75 @@
       "weight": 1.0
     },
     {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_handleapi",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_getdb",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "sim_enterprise_ecom_app_src_admin_server_adminportalserver_start",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_init",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "context": "call",
+      "source_file": "sim-enterprise/ecom-app/src/admin-server.ts",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
       "source": "sim_enterprise_ecom_app_src_server_ecomserver_handleapi",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_getdb",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_getdb",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L150",
+      "source_location": "L103",
       "weight": 1.0
     },
     {
       "source": "sim_enterprise_ecom_app_src_server_ecomserver_start",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_init",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_init",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L80",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
       "source": "sim_enterprise_ecom_app_src_server_ecomserver_start",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_getdb",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_getdb",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L81",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
       "source": "sim_enterprise_ecom_app_src_server_ecomserver_stop",
-      "target": "sim_enterprise_ecom_app_src_db_ecomdatabase_close",
+      "target": "sim_enterprise_ecom_app_src_db_enterprisedatabase_close",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "sim-enterprise/ecom-app/src/server.ts",
-      "source_location": "L97",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -15678,5 +16587,6 @@
       "weight": 1.0
     }
   ],
-  "hyperedges": []
+  "hyperedges": [],
+  "built_at_commit": "545de875c4698ebb0b0775247c53b5cabdc91db1"
 }

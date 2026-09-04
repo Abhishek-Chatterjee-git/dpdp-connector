@@ -10,6 +10,7 @@ export interface CustomerUser {
   panNo?: string;
   streetAddress?: string;
   city?: string;
+  consentPurposes: string[];
   createdAt: string;
 }
 
@@ -40,21 +41,6 @@ export class CustomerAuthService {
         FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
       );
     `);
-
-    // Seed credentials for initial demo customer usr_aarav
-    const existingCred = this.db
-      .prepare('SELECT user_id FROM customer_credentials WHERE user_id = ?')
-      .get('usr_aarav');
-
-    if (!existingCred) {
-      const salt = randomBytes(16).toString('hex');
-      const hash = this.hashPassword('Aarav@2025', salt);
-      const now = new Date().toISOString();
-      this.db.prepare(`
-        INSERT INTO customer_credentials (user_id, password_hash, salt, updated_at)
-        VALUES (?, ?, ?, ?)
-      `).run('usr_aarav', hash, salt, now);
-    }
   }
 
   private hashPassword(password: string, salt: string): string {
@@ -87,19 +73,25 @@ export class CustomerAuthService {
       .get(userRow.id) as unknown as { password_hash: string; salt: string } | undefined;
 
     if (!credRow) {
-      // Default demo fallback if credentials not yet set
-      if (passwordPlain !== 'Password@123' && passwordPlain !== 'Aarav@2025') {
-        return { success: false, error: 'Invalid customer password' };
-      }
-    } else {
-      const computed = this.hashPassword(passwordPlain, credRow.salt);
-      if (computed !== credRow.password_hash) {
-        return { success: false, error: 'Invalid customer password' };
-      }
+      return { success: false, error: 'No password set for this account' };
+    }
+
+    const computed = this.hashPassword(passwordPlain, credRow.salt);
+    if (computed !== credRow.password_hash) {
+      return { success: false, error: 'Invalid email or password' };
     }
 
     const token = `cust_sess_${randomBytes(24).toString('hex')}`;
     const expiresAt = Date.now() + 7 * 24 * 3600 * 1000; // 7 days
+
+    let consentPurposes: string[] = ['essential'];
+    try {
+      if (userRow.consent_purposes) {
+        consentPurposes = JSON.parse(userRow.consent_purposes);
+      }
+    } catch {
+      consentPurposes = ['essential'];
+    }
 
     const user: CustomerUser = {
       id: userRow.id,
@@ -110,6 +102,7 @@ export class CustomerAuthService {
       panNo: userRow.pan_no || undefined,
       streetAddress: userRow.street_address || undefined,
       city: userRow.city || undefined,
+      consentPurposes,
       createdAt: userRow.created_at,
     };
 

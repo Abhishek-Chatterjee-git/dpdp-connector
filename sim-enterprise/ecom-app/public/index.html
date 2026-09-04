@@ -38,7 +38,7 @@
 </head>
 <body class="min-h-screen bg-canvasCream text-ink font-sans flex flex-col selection:bg-aloe selection:text-black">
 
-  <!-- Top Dark Nav Bar (Cinematic Track) -->
+  <!-- Top Dark Navigation Bar -->
   <header class="bg-canvasNight text-white px-6 lg:px-12 h-16 flex items-center justify-between sticky top-0 z-40">
     <div class="flex items-center space-x-4">
       <a href="/" class="w-7 h-7 rounded-full bg-white flex items-center justify-center font-bold text-xs text-black tracking-tighter">
@@ -50,12 +50,11 @@
 
     <!-- Center Navigation Links -->
     <nav class="hidden md:flex items-center space-x-6 text-sm text-shade30 font-light">
-      <a href="#catalog" class="hover:text-white transition-colors">Catalog</a>
-      <a href="#test-bench" class="hover:text-white transition-colors">Live DPDP Gate</a>
-      <a href="/privacy-notice" class="hover:text-white transition-colors">Privacy Notice</a>
+      <a href="#catalog" class="hover:text-white transition-colors">Artisan Catalog</a>
+      <a href="/privacy-notice" class="hover:text-white transition-colors">Privacy Notice (DPDP)</a>
       <a href="/privacy-center" class="text-aloe hover:underline">Customer Privacy Portal</a>
-      <a href="http://localhost:4000" target="_blank" class="hover:text-white transition-colors flex items-center space-x-1">
-        <span>DPO Dashboard</span>
+      <a href="http://localhost:3001" target="_blank" class="hover:text-white transition-colors flex items-center space-x-1">
+        <span>Admin Operations</span>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
       </a>
     </nav>
@@ -68,106 +67,64 @@
         <span id="cart-count-badge" class="absolute top-0 right-0 w-4 h-4 rounded-full bg-aloe text-black text-[10px] font-bold flex items-center justify-center">0</span>
       </button>
 
-      <!-- Auth State -->
+      <!-- Auth State: Guest or Logged-in Customer -->
       <div id="nav-guest" class="flex items-center space-x-2">
         <button onclick="openSignupModal()" class="px-4 py-2 rounded-full text-xs font-semibold bg-white text-black hover:bg-shade30 transition-all">
-          Sign Up
+          Create Account
         </button>
         <button onclick="openLoginModal()" class="px-4 py-2 rounded-full text-xs font-medium border border-white/40 text-white hover:bg-white/10 transition-all">
-          Log In
+          Sign In
         </button>
       </div>
+
       <div id="nav-user" class="hidden flex items-center space-x-2">
         <a href="/privacy-center" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-aloe text-black hover:opacity-90 transition-all">
-          <span id="nav-user-name">Aarav S.</span>
+          <span id="nav-user-name">Customer</span>
         </a>
-        <button onclick="logoutCustomer()" class="text-xs text-shade40 hover:text-white px-2">Logout</button>
+        <button onclick="logoutCustomer()" class="text-xs text-shade40 hover:text-white px-2">Sign Out</button>
       </div>
     </div>
   </header>
 
-  <!-- Section 1: Cinematic Dark Hero Spread -->
-  <section class="bg-canvasNight text-white py-16 lg:py-24 px-6 lg:px-12 border-b border-white/10">
+  <!-- Hero Banner -->
+  <section class="bg-canvasNight text-white py-16 lg:py-20 px-6 lg:px-12 border-b border-white/10">
     <div class="max-w-6xl mx-auto space-y-6">
-      <div class="text-xs tracking-[0.2em] uppercase text-shade40 font-medium">Enterprise DPDP Compliance in Motion</div>
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extralight tracking-tight leading-[1.05] font-display">
-        Timeless Handcrafted Luxury.<br>
+      <div class="text-xs tracking-[0.2em] uppercase text-shade40 font-medium">Bespoke Living · Ethical Craft</div>
+      <h1 class="text-4xl sm:text-6xl font-extralight tracking-tight leading-[1.05] font-display">
+        Handcrafted Goods.<br>
         <span class="font-normal text-aloe">Strict Privacy by Design.</span>
       </h1>
       <p class="text-base sm:text-lg text-shade40 max-w-2xl font-light leading-relaxed">
-        Discover bespoke ceramics, hand-loomed textiles, and artisanal decor. Every transaction and marketing communication is verified in real-time by a local in-VPC Zone Agent under India's DPDP Act 2025.
+        Discover hand-thrown ceramics, Himalayan cashmere, and Moroccan brassware. Built with statutory compliance under India's Digital Personal Data Protection Act (DPDP Act 2025).
       </p>
-      <div class="pt-4 flex flex-wrap gap-4">
+      <div class="pt-2 flex flex-wrap gap-4">
         <button onclick="document.getElementById('catalog').scrollIntoView({behavior: 'smooth'})" class="px-7 py-3 rounded-full text-sm font-semibold bg-white text-black hover:bg-shade30 transition-all shadow-lg">
-          Explore Artisan Catalog
+          Browse Catalog
         </button>
-        <a href="/privacy-center" class="px-7 py-3 rounded-full text-sm font-medium border border-white/40 text-white hover:bg-white/10 transition-all">
-          Manage My Privacy Rights →
+        <a href="/privacy-notice" class="px-7 py-3 rounded-full text-sm font-medium border border-white/40 text-white hover:bg-white/10 transition-all">
+          Read Privacy Policy →
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Section 2: Real Product Catalog Grid -->
+  <!-- Product Catalog Grid -->
   <section id="catalog" class="py-14 px-6 lg:px-12 max-w-6xl mx-auto w-full space-y-8">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <div>
-        <h2 class="text-3xl font-light tracking-tight font-display">Curated Collections</h2>
-        <p class="text-xs text-shade50 mt-1">Ethically sourced artisan pieces. Real-time fulfillment with statutory DPDP notice.</p>
+        <h2 class="text-3xl font-light tracking-tight font-display">Curated Artisan Goods</h2>
+        <p class="text-xs text-shade50 mt-1">Live products from our enterprise database.</p>
       </div>
       <div class="flex items-center space-x-2 text-xs">
-        <span class="px-3 py-1.5 rounded-full bg-white border border-hairlineLight text-black font-medium">All Goods</span>
-        <span class="px-3 py-1.5 rounded-full bg-canvasCream border border-hairlineLight text-shade50">Home Living</span>
-        <span class="px-3 py-1.5 rounded-full bg-canvasCream border border-hairlineLight text-shade50">Textiles</span>
+        <button onclick="fetchCatalog()" class="px-3.5 py-1.5 rounded-full bg-white border border-hairlineLight text-black font-medium hover:bg-canvasCream">
+          Refresh Inventory
+        </button>
       </div>
     </div>
 
     <!-- Product Grid Injected via JS -->
     <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Injected by JavaScript -->
-    </div>
-  </section>
-
-  <!-- Section 3: Live DPDP Consent Enforcement Test Bench -->
-  <section id="test-bench" class="py-10 px-6 lg:px-12 max-w-6xl mx-auto w-full">
-    <div class="bg-canvasLight rounded-2xl border border-hairlineLight p-8 shadow-stacked-light space-y-6">
-      <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-hairlineLight gap-4">
-        <div>
-          <span class="text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-aloe text-black">Compliance Engine</span>
-          <h2 class="text-2xl font-normal tracking-tight mt-2 font-display">Hot-Path Zone Agent Consent Gate</h2>
-          <p class="text-xs text-shade50 mt-1">Sub-millisecond consent verification before sending marketing SMS or flash deal notifications.</p>
-        </div>
-        <div class="flex items-center space-x-2 bg-canvasCream p-3 rounded-xl border border-hairlineLight text-xs">
-          <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <div>
-            <div class="text-[10px] uppercase text-shade50 font-mono">Agent Target</div>
-            <div class="font-mono text-xs font-semibold text-black">http://127.0.0.1:5000</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-        <div class="lg:col-span-2 space-y-4">
-          <div class="p-4 rounded-xl bg-canvasCream border border-hairlineLight space-y-2 text-xs">
-            <div class="font-semibold text-sm text-black">Logged in Principal: <span id="bench-user-email" class="font-mono text-black font-normal">aarav.sharma@example.com</span></div>
-            <div class="text-shade50">Action: <strong class="text-black">POST /api/marketing/send-promo-sms</strong> (Purpose: <code class="bg-white px-1.5 py-0.5 rounded border border-hairlineLight text-black">marketing_promo</code>)</div>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-3">
-            <button onclick="triggerMarketingSms()" class="px-6 py-3 rounded-full text-xs font-semibold bg-black text-white hover:bg-shade70 transition-all shadow-md flex items-center space-x-2">
-              <svg class="w-4 h-4 text-aloe" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-              <span>Dispatch Promotional Flash SMS</span>
-            </button>
-            <a href="/privacy-center" class="px-5 py-3 rounded-full text-xs font-medium border border-hairlineLight text-black bg-white hover:bg-canvasCream transition-all">
-              Withdraw Consent in Privacy Portal →
-            </a>
-          </div>
-        </div>
-
-        <div id="bench-result-box" class="p-5 rounded-xl border border-hairlineLight bg-canvasCream space-y-2 text-xs font-mono min-h-[130px] flex flex-col justify-center">
-          <div class="text-shade50 text-center">Click "Dispatch Promotional Flash SMS" to evaluate live consent enforcement.</div>
-        </div>
-      </div>
+      <div class="col-span-full py-12 text-center text-xs text-shade50">Loading products from database...</div>
     </div>
   </section>
 
@@ -176,12 +133,12 @@
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="space-y-1">
         <div class="font-normal uppercase tracking-wider">Artisan Crafts Enterprise</div>
-        <div class="text-shade40">Compliant with Digital Personal Data Protection Act (DPDP Act 2025).</div>
+        <div class="text-shade40">Operating under the Digital Personal Data Protection Act, 2025.</div>
       </div>
       <div class="flex items-center space-x-6 text-shade30">
-        <a href="/privacy-notice" class="hover:text-white transition-colors">Statutory Privacy Policy</a>
-        <a href="/privacy-center" class="hover:text-white transition-colors">Customer Rights Portal</a>
-        <a href="http://localhost:4000" target="_blank" class="text-aloe hover:underline">Control Plane DPO Console</a>
+        <a href="/privacy-notice" class="hover:text-white transition-colors">Statutory Privacy Notice</a>
+        <a href="/privacy-center" class="hover:text-white transition-colors">Customer Privacy Portal</a>
+        <a href="http://localhost:3001" target="_blank" class="text-aloe hover:underline">Admin Portal</a>
       </div>
     </div>
   </footer>
@@ -206,7 +163,7 @@
           <span id="cart-total-price">₹0.00</span>
         </div>
         <div class="text-[11px] text-shade50">
-          Order processed under essential DPDP notice (GST invoicing & secure courier dispatch).
+          Order processed under statutory essential notice for delivery & GST invoicing.
         </div>
         <button onclick="checkoutCart()" class="w-full py-3.5 rounded-full text-xs font-semibold bg-black text-white hover:bg-shade70 shadow-md">
           Place Order & Checkout →
@@ -221,7 +178,7 @@
       <div class="flex items-center justify-between pb-3 border-b border-hairlineLight">
         <div>
           <h3 class="text-lg font-normal text-black font-display">Create Account & Review Consent</h3>
-          <p class="text-xs text-shade50">Statutory DPDP Act 2025 Notice Specification</p>
+          <p class="text-xs text-shade50">Statutory Notice under DPDP Act 2025 (Section 5 & 6)</p>
         </div>
         <button onclick="closeSignupModal()" class="text-shade50 hover:text-black text-base">✕</button>
       </div>
@@ -229,49 +186,56 @@
       <div class="space-y-3 text-xs">
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-black font-medium mb-1">Full Name</label>
-            <input id="reg-name" type="text" value="Priya Patel" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
+            <label class="block text-black font-medium mb-1">Full Name *</label>
+            <input id="reg-name" type="text" placeholder="e.g. Aditi Rao" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
           </div>
           <div>
-            <label class="block text-black font-medium mb-1">Email Address</label>
-            <input id="reg-email" type="email" value="priya.patel@example.com" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
+            <label class="block text-black font-medium mb-1">Email Address *</label>
+            <input id="reg-email" type="email" placeholder="aditi@example.com" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-black font-medium mb-1">Password</label>
-            <input id="reg-password" type="password" value="Priya@2025" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
+            <label class="block text-black font-medium mb-1">Password *</label>
+            <input id="reg-password" type="password" placeholder="Create a secure password" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
           </div>
           <div>
-            <label class="block text-black font-medium mb-1">Phone Number</label>
-            <input id="reg-phone" type="text" value="9876543211" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
+            <label class="block text-black font-medium mb-1">Phone Number *</label>
+            <input id="reg-phone" type="text" placeholder="10-digit mobile" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
           </div>
         </div>
 
         <div>
           <label class="block text-black font-medium mb-1">Delivery Address</label>
-          <input id="reg-address" type="text" value="45 Residency Road, Ashok Nagar, Bengaluru" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
+          <input id="reg-address" type="text" placeholder="Street address, City, Pincode" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
         </div>
 
-        <!-- DPDP Notice Box -->
+        <!-- DPDP Statutory Notice & Granular Consent Box -->
         <div class="p-4 rounded-xl bg-pistachio border border-hairlineLight space-y-2.5 mt-2">
           <div class="font-semibold text-black text-xs flex items-center justify-between">
-            <span>DPDP Statutory Notice (v2.1)</span>
-            <a href="/privacy-notice" target="_blank" class="text-[10px] text-black underline">Read Full Policy</a>
+            <span>DPDP Statutory Notice (v2.1_dpdp2025)</span>
+            <a href="/privacy-notice" target="_blank" class="text-[10px] text-black underline">Read Policy</a>
           </div>
           
           <label class="flex items-start space-x-2.5 cursor-pointer">
             <input id="consent-essential" type="checkbox" checked disabled class="mt-0.5 rounded text-black">
             <span class="text-[11px] text-black/90">
-              <strong>1. Essential Services (Mandatory):</strong> Order processing, GST invoicing, and authentication.
+              <strong>1. Essential Order Fulfillment (Mandatory):</strong> Collection of name, delivery address, and payment references for processing orders and tax compliance.
             </span>
           </label>
 
           <label class="flex items-start space-x-2.5 cursor-pointer">
             <input id="consent-marketing" type="checkbox" checked class="mt-0.5 rounded text-black">
             <span class="text-[11px] text-black/90">
-              <strong>2. Promotional Offers & Flash SMS (Optional):</strong> Direct seasonal discounts and alerts.
+              <strong>2. Promotional Offers & SMS Alerts (Optional):</strong> Direct mobile notifications for discounts and deals. Revocable anytime.
+            </span>
+          </label>
+
+          <label class="flex items-start space-x-2.5 cursor-pointer">
+            <input id="consent-analytics" type="checkbox" checked class="mt-0.5 rounded text-black">
+            <span class="text-[11px] text-black/90">
+              <strong>3. Storefront Recommendations (Optional):</strong> Pseudonymized telemetry to tailor catalog collections.
             </span>
           </label>
         </div>
@@ -296,15 +260,12 @@
 
       <div class="space-y-3 text-xs">
         <div>
-          <label class="block text-black font-medium mb-1">Email</label>
-          <input id="login-email" type="email" value="aarav.sharma@example.com" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
+          <label class="block text-black font-medium mb-1">Email Address</label>
+          <input id="login-email" type="email" placeholder="you@example.com" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
         </div>
         <div>
           <label class="block text-black font-medium mb-1">Password</label>
-          <input id="login-password" type="password" value="Aarav@2025" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
-        </div>
-        <div class="p-2.5 rounded bg-canvasCream border border-hairlineLight text-[11px] text-shade50">
-          Demo Customer: <code>aarav.sharma@example.com</code> / <code>Aarav@2025</code>
+          <input id="login-password" type="password" placeholder="Enter password" class="w-full bg-canvasCream border border-hairlineLight rounded-lg px-3 py-2 text-black focus:outline-none focus:border-black">
         </div>
       </div>
 
