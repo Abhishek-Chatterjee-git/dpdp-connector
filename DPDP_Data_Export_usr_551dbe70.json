@@ -1,0 +1,20 @@
+{
+  "dataPrincipalId": "usr_551dbe70",
+  "exportedAt": "2026-09-04T05:32:21.967Z",
+  "governingLaw": "Digital Personal Data Protection Act 2025, Section 11 (Right to Access)",
+  "profile": {
+    "id": "usr_551dbe70",
+    "fullName": "Abhishek chatterjee",
+    "email": "abcd@123.gmail.com",
+    "phone": "9876543210",
+    "city": "Bengaluru",
+    "streetAddress": "VIT AP UNIVERSITY MH5",
+    "consentPurposes": [
+      "essential",
+      "marketing_promo",
+      "storefront_analytics"
+    ],
+    "registeredAt": "2026-09-04T05:30:56.216Z"
+  },
+  "orderHistory": []
+}
