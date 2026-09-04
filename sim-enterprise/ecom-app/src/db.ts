@@ -22,14 +22,14 @@ export interface UserRecord {
   pan_no?: string | null;
   street_address?: string | null;
   city?: string | null;
-  consent_purposes: string; // JSON array string
+  consent_purposes: string;
   created_at: string;
 }
 
 export interface OrderRecord {
   id: string;
   user_id: string;
-  items: string; // JSON array string
+  items: string;
   total_amount: number;
   shipping_address: string;
   status: string;
@@ -50,7 +50,7 @@ export interface EmployeeRecord {
 export class EnterpriseDatabase {
   private sqliteDb: DatabaseSync | null = null;
   private pgPool: pg.Pool | null = null;
-  private isPostgres = false;
+  public isPostgres = false;
   private dbPath: string;
 
   constructor(dbPath: string = process.env.DB_PATH || 'enterprise_data.sqlite') {
@@ -58,14 +58,21 @@ export class EnterpriseDatabase {
     const connStr = process.env.DB_CONNECTION_STRING;
     if (connStr && connStr.startsWith('postgres')) {
       this.isPostgres = true;
-      this.pgPool = new pg.Pool({ connectionString: connStr });
+      this.pgPool = new pg.Pool({
+        connectionString: connStr,
+        connectionTimeoutMillis: 5000,
+      });
     }
   }
 
   async init(): Promise<void> {
     if (this.sqliteDb || (this.isPostgres && this.pgPool)) {
+      if (this.isPostgres) {
+        await this.initPostgres();
+      }
       return;
     }
+
     if (this.isPostgres && this.pgPool) {
       await this.initPostgres();
     } else {
@@ -77,7 +84,6 @@ export class EnterpriseDatabase {
     this.sqliteDb = new DatabaseSync(this.dbPath);
     this.sqliteDb.exec('PRAGMA journal_mode = WAL;');
 
-    // Products table
     this.sqliteDb.exec(`
       CREATE TABLE IF NOT EXISTS products (
         id TEXT PRIMARY KEY,
@@ -89,10 +95,7 @@ export class EnterpriseDatabase {
         emoji TEXT NOT NULL,
         created_at TEXT NOT NULL
       );
-    `);
 
-    // Customer Users table
-    this.sqliteDb.exec(`
       CREATE TABLE IF NOT EXISTS users (
         id TEXT PRIMARY KEY,
         email TEXT UNIQUE NOT NULL,
@@ -105,10 +108,7 @@ export class EnterpriseDatabase {
         consent_purposes TEXT NOT NULL DEFAULT '["essential"]',
         created_at TEXT NOT NULL
       );
-    `);
 
-    // Customer Credentials table
-    this.sqliteDb.exec(`
       CREATE TABLE IF NOT EXISTS customer_credentials (
         user_id TEXT PRIMARY KEY,
         password_hash TEXT NOT NULL,
@@ -116,10 +116,7 @@ export class EnterpriseDatabase {
         updated_at TEXT NOT NULL,
         FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
       );
-    `);
 
-    // Customer Orders table
-    this.sqliteDb.exec(`
       CREATE TABLE IF NOT EXISTS orders (
         id TEXT PRIMARY KEY,
         user_id TEXT NOT NULL,
@@ -130,10 +127,7 @@ export class EnterpriseDatabase {
         created_at TEXT NOT NULL,
         FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
       );
-    `);
 
-    // Employees table (Internal HR)
-    this.sqliteDb.exec(`
       CREATE TABLE IF NOT EXISTS employees (
         id TEXT PRIMARY KEY,
         full_name TEXT NOT NULL,
@@ -144,10 +138,7 @@ export class EnterpriseDatabase {
         pan_no TEXT NOT NULL,
         created_at TEXT NOT NULL
       );
-    `);
 
-    // Admin / Employee Credentials
-    this.sqliteDb.exec(`
       CREATE TABLE IF NOT EXISTS admin_credentials (
         employee_id TEXT PRIMARY KEY,
         password_hash TEXT NOT NULL,
@@ -160,9 +151,10 @@ export class EnterpriseDatabase {
     this.seedInitialProductsAndAdmin();
   }
 
-  private initPostgres(): Promise<void> {
-    // Schema creation for PostgreSQL
-    return this.pgPool!.query(`
+  private async initPostgres(): Promise<void> {
+    if (!this.pgPool) return;
+
+    await this.pgPool.query(`
       CREATE TABLE IF NOT EXISTS products (
         id VARCHAR(64) PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
@@ -221,18 +213,16 @@ export class EnterpriseDatabase {
         salt VARCHAR(255) NOT NULL,
         updated_at TIMESTAMPTZ NOT NULL
       );
-    `).then(() => this.seedInitialProductsAndAdmin());
+    `);
+
+    await this.seedInitialProductsAndAdmin();
   }
 
-  private seedInitialProductsAndAdmin(): void {
+  private async seedInitialProductsAndAdmin(): Promise<void> {
     const now = new Date().toISOString();
 
-    // 1. Seed Initial Catalog Products
-    const countRow = this.sqliteDb
-      ? (this.sqliteDb.prepare('SELECT COUNT(*) as count FROM products').get() as any)
-      : { count: 0 };
-
-    if (countRow && countRow.count === 0) {
+    const existingProducts = await this.all('SELECT id FROM products LIMIT 1');
+    if (existingProducts.length === 0) {
       const catalog = [
         {
           id: 'prod_vase_01',
@@ -273,41 +263,71 @@ export class EnterpriseDatabase {
       ];
 
       for (const p of catalog) {
-        if (this.sqliteDb) {
-          this.sqliteDb.prepare(`
-            INSERT INTO products (id, title, category, price, stock, description, emoji, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-          `).run(p.id, p.title, p.category, p.price, p.stock, p.description, p.emoji, now);
-        }
+        await this.run(
+          'INSERT INTO products (id, title, category, price, stock, description, emoji, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+          [p.id, p.title, p.category, p.price, p.stock, p.description, p.emoji, now]
+        );
       }
     }
 
-    // 2. Seed Default Staff Admin (for Employee / Inventory Portal)
-    const empCount = this.sqliteDb
-      ? (this.sqliteDb.prepare('SELECT COUNT(*) as count FROM employees').get() as any)
-      : { count: 0 };
-
-    if (empCount && empCount.count === 0) {
+    const existingEmployees = await this.all('SELECT id FROM employees LIMIT 1');
+    if (existingEmployees.length === 0) {
       const empId = 'emp_admin_01';
-      if (this.sqliteDb) {
-        this.sqliteDb.prepare(`
-          INSERT INTO employees (id, full_name, email, department, role, salary, pan_no, created_at)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        `).run(empId, 'Rajesh Kumar (Store Manager)', 'admin@artisan-crafts.in', 'Operations', 'STORE_MANAGER', 85000, 'ABCDE1234F', now);
+      await this.run(
+        'INSERT INTO employees (id, full_name, email, department, role, salary, pan_no, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [empId, 'Rajesh Kumar (Store Manager)', 'admin@artisan-crafts.in', 'Operations', 'STORE_MANAGER', 85000, 'ABCDE1234F', now]
+      );
 
-        const salt = randomBytes(16).toString('hex');
-        const hash = createHash('sha256').update('Admin@2025' + salt).digest('hex');
-        this.sqliteDb.prepare(`
-          INSERT INTO admin_credentials (employee_id, password_hash, salt, updated_at)
-          VALUES (?, ?, ?, ?)
-        `).run(empId, hash, salt, now);
-      }
+      const salt = randomBytes(16).toString('hex');
+      const hash = createHash('sha256').update('Admin@2025' + salt).digest('hex');
+      await this.run(
+        'INSERT INTO admin_credentials (employee_id, password_hash, salt, updated_at) VALUES (?, ?, ?, ?)',
+        [empId, hash, salt, now]
+      );
     }
   }
 
-  getDb(): DatabaseSync {
-    if (!this.sqliteDb) throw new Error('SQLite database not initialized');
-    return this.sqliteDb;
+  // Unified Query Methods across SQLite and PostgreSQL
+  private formatSql(sql: string): string {
+    if (!this.isPostgres) return sql;
+    let idx = 1;
+    return sql.replace(/\?/g, () => `$${idx++}`);
+  }
+
+  async all<T = any>(sql: string, params: any[] = []): Promise<T[]> {
+    if (this.isPostgres && this.pgPool) {
+      const formatted = this.formatSql(sql);
+      const res = await this.pgPool.query(formatted, params);
+      return res.rows as T[];
+    } else if (this.sqliteDb) {
+      const stmt = this.sqliteDb.prepare(sql);
+      return stmt.all(...params) as unknown as T[];
+    }
+    throw new Error('Database not initialized');
+  }
+
+  async get<T = any>(sql: string, params: any[] = []): Promise<T | null> {
+    if (this.isPostgres && this.pgPool) {
+      const formatted = this.formatSql(sql);
+      const res = await this.pgPool.query(formatted, params);
+      return (res.rows[0] as T) || null;
+    } else if (this.sqliteDb) {
+      const stmt = this.sqliteDb.prepare(sql);
+      return (stmt.get(...params) as unknown as T) || null;
+    }
+    throw new Error('Database not initialized');
+  }
+
+  async run(sql: string, params: any[] = []): Promise<void> {
+    if (this.isPostgres && this.pgPool) {
+      const formatted = this.formatSql(sql);
+      await this.pgPool.query(formatted, params);
+    } else if (this.sqliteDb) {
+      const stmt = this.sqliteDb.prepare(sql);
+      stmt.run(...params);
+    } else {
+      throw new Error('Database not initialized');
+    }
   }
 
   async close(): Promise<void> {

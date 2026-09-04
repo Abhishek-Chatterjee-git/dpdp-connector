@@ -27,7 +27,7 @@ export class AdminPortalServer {
     return new Promise((resolve) => {
       this.server = createServer((req, res) => this.handleRequest(req, res));
       this.server.listen(this.port, () => {
-        console.log(`[Admin Portal] Enterprise Admin & Operations Dashboard running at http://localhost:${this.port}`);
+        console.log(`[Admin Portal] Enterprise Admin & Operations Dashboard running at http://0.0.0.0:${this.port}`);
         resolve();
       });
     });
@@ -81,18 +81,16 @@ export class AdminPortalServer {
       res.end(JSON.stringify(data));
     };
 
-    const db = this.db.getDb();
-
     // 1. Admin Login: POST /api/admin/auth/login
     if (method === 'POST' && pathname === '/api/admin/auth/login') {
       const body = await this.readJsonBody(req);
       const email = body.email || 'admin@artisan-crafts.in';
       const password = body.password || '';
 
-      const emp = db.prepare('SELECT * FROM employees WHERE email = ?').get(email) as any;
+      const emp = await this.db.get('SELECT * FROM employees WHERE email = ?', [email]) as any;
       if (!emp) return json({ error: 'Staff account not found' }, 401);
 
-      const cred = db.prepare('SELECT * FROM admin_credentials WHERE employee_id = ?').get(emp.id) as any;
+      const cred = await this.db.get('SELECT * FROM admin_credentials WHERE employee_id = ?', [emp.id]) as any;
       if (!cred) return json({ error: 'No credentials configured' }, 401);
 
       const computed = createHash('sha256').update(password + cred.salt).digest('hex');
@@ -123,7 +121,7 @@ export class AdminPortalServer {
 
     // 2. List Inventory: GET /api/admin/inventory
     if (method === 'GET' && pathname === '/api/admin/inventory') {
-      const products = db.prepare('SELECT * FROM products ORDER BY created_at DESC').all();
+      const products = await this.db.all('SELECT * FROM products ORDER BY created_at DESC');
       return json({ products });
     }
 
@@ -133,18 +131,19 @@ export class AdminPortalServer {
       const id = `prod_${randomUUID().slice(0, 8)}`;
       const now = new Date().toISOString();
 
-      db.prepare(`
-        INSERT INTO products (id, title, category, price, stock, description, emoji, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-      `).run(
-        id,
-        body.title,
-        body.category || 'General',
-        parseFloat(body.price) || 0,
-        parseInt(body.stock, 10) || 0,
-        body.description || '',
-        body.emoji || '📦',
-        now
+      await this.db.run(
+        `INSERT INTO products (id, title, category, price, stock, description, emoji, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          id,
+          body.title,
+          body.category || 'General',
+          parseFloat(body.price) || 0,
+          parseInt(body.stock, 10) || 0,
+          body.description || '',
+          body.emoji || '📦',
+          now,
+        ]
       );
 
       return json({ success: true, id, message: 'Product added to inventory' });
@@ -153,41 +152,41 @@ export class AdminPortalServer {
     // 4. Update Stock: PUT /api/admin/inventory/update-stock
     if (method === 'PUT' && pathname === '/api/admin/inventory/update-stock') {
       const body = await this.readJsonBody(req);
-      db.prepare('UPDATE products SET stock = ? WHERE id = ?').run(parseInt(body.stock, 10), body.productId);
+      await this.db.run('UPDATE products SET stock = ? WHERE id = ?', [parseInt(body.stock, 10), body.productId]);
       return json({ success: true, message: 'Stock updated' });
     }
 
     // 5. List Orders: GET /api/admin/orders
     if (method === 'GET' && pathname === '/api/admin/orders') {
-      const orders = db.prepare(`
+      const orders = await this.db.all(`
         SELECT o.*, u.full_name as customer_name, u.email as customer_email, u.phone as customer_phone
         FROM orders o
         JOIN users u ON o.user_id = u.id
         ORDER BY o.created_at DESC
-      `).all();
+      `);
 
       return json({
         orders: orders.map((o: any) => ({
           ...o,
-          items: JSON.parse(o.items || '[]'),
+          items: typeof o.items === 'string' ? JSON.parse(o.items || '[]') : o.items,
         })),
       });
     }
 
     // 6. List Customers: GET /api/admin/customers
     if (method === 'GET' && pathname === '/api/admin/customers') {
-      const customers = db.prepare('SELECT id, email, full_name, phone, city, consent_purposes, created_at FROM users ORDER BY created_at DESC').all();
+      const customers = await this.db.all('SELECT id, email, full_name, phone, city, consent_purposes, created_at FROM users ORDER BY created_at DESC');
       return json({
         customers: customers.map((c: any) => ({
           ...c,
-          consentPurposes: JSON.parse(c.consent_purposes || '[]'),
+          consentPurposes: typeof c.consent_purposes === 'string' ? JSON.parse(c.consent_purposes || '[]') : c.consent_purposes,
         })),
       });
     }
 
     // 7. List Employees: GET /api/admin/employees
     if (method === 'GET' && pathname === '/api/admin/employees') {
-      const employees = db.prepare('SELECT id, full_name, email, department, role, salary, pan_no, created_at FROM employees ORDER BY created_at ASC').all();
+      const employees = await this.db.all('SELECT id, full_name, email, department, role, salary, pan_no, created_at FROM employees ORDER BY created_at ASC');
       return json({ employees });
     }
 

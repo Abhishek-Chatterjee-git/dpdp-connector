@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from 'node:crypto';
-import { DatabaseSync } from 'node:sqlite';
+import { EnterpriseDatabase } from './db.js';
 
 export interface CustomerUser {
   id: string;
@@ -23,55 +23,43 @@ export interface CustomerSession {
 }
 
 export class CustomerAuthService {
-  private db: DatabaseSync;
+  private db: EnterpriseDatabase;
   private sessions: Map<string, CustomerSession> = new Map();
 
-  constructor(db: DatabaseSync) {
+  constructor(db: EnterpriseDatabase) {
     this.db = db;
-    this.initTables();
-  }
-
-  private initTables(): void {
-    this.db.exec(`
-      CREATE TABLE IF NOT EXISTS customer_credentials (
-        user_id TEXT PRIMARY KEY,
-        password_hash TEXT NOT NULL,
-        salt TEXT NOT NULL,
-        updated_at TEXT NOT NULL,
-        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
-      );
-    `);
   }
 
   private hashPassword(password: string, salt: string): string {
     return createHash('sha256').update(password + salt).digest('hex');
   }
 
-  setPassword(userId: string, passwordPlain: string): void {
+  async setPassword(userId: string, passwordPlain: string): Promise<void> {
     const salt = randomBytes(16).toString('hex');
     const hash = this.hashPassword(passwordPlain, salt);
     const now = new Date().toISOString();
 
-    this.db.prepare(`
-      INSERT INTO customer_credentials (user_id, password_hash, salt, updated_at)
-      VALUES (?, ?, ?, ?)
-      ON CONFLICT(user_id) DO UPDATE SET
-        password_hash = excluded.password_hash,
-        salt = excluded.salt,
-        updated_at = excluded.updated_at
-    `).run(userId, hash, salt, now);
+    const existing = await this.db.get('SELECT user_id FROM customer_credentials WHERE user_id = ?', [userId]);
+    if (existing) {
+      await this.db.run(
+        'UPDATE customer_credentials SET password_hash = ?, salt = ?, updated_at = ? WHERE user_id = ?',
+        [hash, salt, now, userId]
+      );
+    } else {
+      await this.db.run(
+        'INSERT INTO customer_credentials (user_id, password_hash, salt, updated_at) VALUES (?, ?, ?, ?)',
+        [userId, hash, salt, now]
+      );
+    }
   }
 
-  login(email: string, passwordPlain: string): { success: boolean; session?: CustomerSession; user?: CustomerUser; error?: string } {
-    const userRow = this.db.prepare('SELECT * FROM users WHERE email = ?').get(email) as unknown as any;
+  async login(email: string, passwordPlain: string): Promise<{ success: boolean; session?: CustomerSession; user?: CustomerUser; error?: string }> {
+    const userRow = await this.db.get('SELECT * FROM users WHERE email = ?', [email]) as any;
     if (!userRow) {
       return { success: false, error: 'User account not found' };
     }
 
-    const credRow = this.db
-      .prepare('SELECT * FROM customer_credentials WHERE user_id = ?')
-      .get(userRow.id) as unknown as { password_hash: string; salt: string } | undefined;
-
+    const credRow = await this.db.get('SELECT * FROM customer_credentials WHERE user_id = ?', [userRow.id]) as any;
     if (!credRow) {
       return { success: false, error: 'No password set for this account' };
     }
@@ -87,7 +75,9 @@ export class CustomerAuthService {
     let consentPurposes: string[] = ['essential'];
     try {
       if (userRow.consent_purposes) {
-        consentPurposes = JSON.parse(userRow.consent_purposes);
+        consentPurposes = typeof userRow.consent_purposes === 'string'
+          ? JSON.parse(userRow.consent_purposes)
+          : userRow.consent_purposes;
       }
     } catch {
       consentPurposes = ['essential'];

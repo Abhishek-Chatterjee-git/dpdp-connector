@@ -31,12 +31,12 @@ export class EcomServer {
 
   async start(): Promise<void> {
     await this.db.init();
-    this.authService = new CustomerAuthService(this.db.getDb());
+    this.authService = new CustomerAuthService(this.db);
 
     return new Promise((resolve) => {
       this.server = createServer((req, res) => this.handleRequest(req, res));
       this.server.listen(this.config.port, () => {
-        console.log(`[Customer Storefront] Production E-Commerce App running at http://localhost:${this.config.port}`);
+        console.log(`[Customer Storefront] Production E-Commerce App running at http://0.0.0.0:${this.config.port}`);
         resolve();
       });
     });
@@ -100,12 +100,11 @@ export class EcomServer {
       res.end(JSON.stringify(data));
     };
 
-    const db = this.db.getDb();
     const authService = this.authService!;
 
     // 1. Live Product Catalog: GET /api/catalog/products
     if (method === 'GET' && pathname === '/api/catalog/products') {
-      const products = db.prepare('SELECT * FROM products ORDER BY created_at ASC').all();
+      const products = await this.db.all('SELECT * FROM products ORDER BY created_at ASC');
       return json({ products });
     }
 
@@ -123,31 +122,32 @@ export class EcomServer {
       }
 
       // Check if user already exists
-      const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
+      const existing = await this.db.get('SELECT id FROM users WHERE email = ?', [email]);
       if (existing) {
         return json({ error: 'An account with this email address already exists.' }, 400);
       }
 
-      db.prepare(`
-        INSERT INTO users (id, email, full_name, phone, aadhaar_no, pan_no, street_address, city, consent_purposes, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `).run(
-        userId,
-        email,
-        fullName,
-        phone,
-        aadhaarNo || null,
-        panNo || null,
-        streetAddress || null,
-        city || null,
-        JSON.stringify(consentedPurposes),
-        now
+      await this.db.run(
+        `INSERT INTO users (id, email, full_name, phone, aadhaar_no, pan_no, street_address, city, consent_purposes, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          userId,
+          email,
+          fullName,
+          phone,
+          aadhaarNo || null,
+          panNo || null,
+          streetAddress || null,
+          city || null,
+          JSON.stringify(consentedPurposes),
+          now,
+        ]
       );
 
       // Save password credentials
-      authService.setPassword(userId, password);
+      await authService.setPassword(userId, password);
 
-      const loginRes = authService.login(email, password);
+      const loginRes = await authService.login(email, password);
 
       return json({
         success: true,
@@ -162,20 +162,20 @@ export class EcomServer {
       const email = body.email || '';
       const password = body.password || '';
 
-      const authRes = authService.login(email, password);
+      const authRes = await authService.login(email, password);
       if (!authRes.success) {
         return json({ error: authRes.error }, 401);
       }
 
       const user = authRes.user!;
-      const orders = db.prepare('SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC').all(user.id) as unknown as any[];
+      const orders = await this.db.all('SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC', [user.id]);
 
       return json({
         success: true,
         session: authRes.session,
         user: {
           ...user,
-          orders: orders.map((o) => ({ ...o, items: JSON.parse(o.items || '[]') })),
+          orders: orders.map((o) => ({ ...o, items: typeof o.items === 'string' ? JSON.parse(o.items || '[]') : o.items })),
         },
       });
     }
@@ -187,14 +187,16 @@ export class EcomServer {
       const session = authService.verifySession(token);
       if (!session) return json({ error: 'Unauthorized session' }, 401);
 
-      const user = db.prepare('SELECT * FROM users WHERE id = ?').get(session.userId) as unknown as any;
+      const user = await this.db.get('SELECT * FROM users WHERE id = ?', [session.userId]);
       if (!user) return json({ error: 'User not found' }, 404);
 
-      const orders = db.prepare('SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC').all(user.id) as unknown as any[];
+      const orders = await this.db.all('SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC', [user.id]);
 
       let consentPurposes = ['essential'];
       try {
-        consentPurposes = JSON.parse(user.consent_purposes || '[]');
+        consentPurposes = typeof user.consent_purposes === 'string'
+          ? JSON.parse(user.consent_purposes || '[]')
+          : user.consent_purposes;
       } catch {}
 
       return json({
@@ -208,7 +210,7 @@ export class EcomServer {
           streetAddress: user.street_address,
           city: user.city,
           consentPurposes,
-          orders: orders.map((o) => ({ ...o, items: JSON.parse(o.items || '[]') })),
+          orders: orders.map((o) => ({ ...o, items: typeof o.items === 'string' ? JSON.parse(o.items || '[]') : o.items })),
         },
       });
     }
@@ -222,13 +224,18 @@ export class EcomServer {
 
       // Decrement stock for ordered items
       for (const item of items || []) {
-        db.prepare('UPDATE products SET stock = MAX(0, stock - ?) WHERE id = ?').run(item.qty || 1, item.id);
+        if (this.db.isPostgres) {
+          await this.db.run('UPDATE products SET stock = GREATEST(0, stock - ?) WHERE id = ?', [item.qty || 1, item.id]);
+        } else {
+          await this.db.run('UPDATE products SET stock = MAX(0, stock - ?) WHERE id = ?', [item.qty || 1, item.id]);
+        }
       }
 
-      db.prepare(`
-        INSERT INTO orders (id, user_id, items, total_amount, shipping_address, status, created_at)
-        VALUES (?, ?, ?, ?, ?, 'CONFIRMED', ?)
-      `).run(orderId, userId, JSON.stringify(items), totalAmount, shippingAddress || 'Default Address', now);
+      await this.db.run(
+        `INSERT INTO orders (id, user_id, items, total_amount, shipping_address, status, created_at)
+         VALUES (?, ?, ?, ?, ?, 'CONFIRMED', ?)`,
+        [orderId, userId, JSON.stringify(items), totalAmount, shippingAddress || 'Customer Address', now]
+      );
 
       return json({
         success: true,
@@ -249,10 +256,10 @@ export class EcomServer {
       const userId = url.searchParams.get('userId');
       if (!userId) return json({ error: 'User ID required' }, 400);
 
-      const user = db.prepare('SELECT * FROM users WHERE id = ?').get(userId) as unknown as any;
+      const user = await this.db.get('SELECT * FROM users WHERE id = ?', [userId]);
       if (!user) return json({ error: 'User not found' }, 404);
 
-      const orders = db.prepare('SELECT * FROM orders WHERE user_id = ?').all(userId) as unknown as any[];
+      const orders = await this.db.all('SELECT * FROM orders WHERE user_id = ?', [userId]);
 
       return json({
         dataPrincipalId: user.id,
@@ -265,10 +272,10 @@ export class EcomServer {
           phone: user.phone,
           city: user.city,
           streetAddress: user.street_address,
-          consentPurposes: JSON.parse(user.consent_purposes || '[]'),
+          consentPurposes: typeof user.consent_purposes === 'string' ? JSON.parse(user.consent_purposes || '[]') : user.consent_purposes,
           registeredAt: user.created_at,
         },
-        orderHistory: orders.map((o) => ({ ...o, items: JSON.parse(o.items || '[]') })),
+        orderHistory: orders.map((o) => ({ ...o, items: typeof o.items === 'string' ? JSON.parse(o.items || '[]') : o.items })),
       });
     }
 
@@ -277,13 +284,16 @@ export class EcomServer {
       const body = await this.readJsonBody(req);
       const { userId, purposesWithdrawn } = body;
 
-      const user = db.prepare('SELECT consent_purposes FROM users WHERE id = ?').get(userId) as any;
+      const user = await this.db.get('SELECT consent_purposes FROM users WHERE id = ?', [userId]);
       if (!user) return json({ error: 'User not found' }, 404);
 
-      let currentPurposes: string[] = JSON.parse(user.consent_purposes || '["essential"]');
+      let currentPurposes: string[] = typeof user.consent_purposes === 'string'
+        ? JSON.parse(user.consent_purposes || '["essential"]')
+        : user.consent_purposes;
+
       currentPurposes = currentPurposes.filter((p) => !(purposesWithdrawn || []).includes(p));
 
-      db.prepare('UPDATE users SET consent_purposes = ? WHERE id = ?').run(JSON.stringify(currentPurposes), userId);
+      await this.db.run('UPDATE users SET consent_purposes = ? WHERE id = ?', [JSON.stringify(currentPurposes), userId]);
 
       return json({
         success: true,
@@ -299,16 +309,31 @@ export class EcomServer {
       const { userId } = body;
 
       // Logical soft delete with access revocation
-      db.prepare(`
-        UPDATE users SET
-          email = 'deleted_' || id || '@quarantine.local',
-          full_name = '[DELETED DATA PRINCIPAL]',
-          phone = '0000000000',
-          street_address = NULL,
-          city = NULL,
-          consent_purposes = '[]'
-        WHERE id = ?
-      `).run(userId);
+      if (this.db.isPostgres) {
+        await this.db.run(
+          `UPDATE users SET
+            email = 'deleted_' || id || '@quarantine.local',
+            full_name = '[DELETED DATA PRINCIPAL]',
+            phone = '0000000000',
+            street_address = NULL,
+            city = NULL,
+            consent_purposes = '[]'
+          WHERE id = ?`,
+          [userId]
+        );
+      } else {
+        await this.db.run(
+          `UPDATE users SET
+            email = 'deleted_' || id || '@quarantine.local',
+            full_name = '[DELETED DATA PRINCIPAL]',
+            phone = '0000000000',
+            street_address = NULL,
+            city = NULL,
+            consent_purposes = '[]'
+          WHERE id = ?`,
+          [userId]
+        );
+      }
 
       return json({
         success: true,
