@@ -15,6 +15,8 @@
     "test:agent": "npm --workspace=agent run test",
     "test:cp": "npm --workspace=control-plane run test",
     "test:ecom": "npm --workspace=sim-enterprise/ecom-app run test",
+    "ecom": "npm --workspace=sim-enterprise/ecom-app run dev",
+    "dev:ecom": "npm --workspace=sim-enterprise/ecom-app run dev",
     "test:e2e": "npx tsx scripts/demo-e2e.ts",
     "demo": "npx tsx scripts/demo-e2e.ts"
   },
